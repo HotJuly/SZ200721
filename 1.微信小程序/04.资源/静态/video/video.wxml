@@ -1,0 +1,186 @@
+<view class="videoContainer">
+  <!-- 头部搜索区域 -->
+  <view class="header">
+    <image src="/static/images/video/video.jpg"></image>
+    <input type="text" placeholder="光辉岁月" placeholder-class="placeholder"></input>
+    <image src="/static/images/logo.png"></image>
+  </view>
+
+  <!-- 导航栏区域 -->
+  <scroll-view class="navScroll" 
+    enable-flex 
+    scroll-x>
+    <view class="navItem active">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+    <view class="navItem">
+      <text>现场</text>
+    </view>
+  </scroll-view>
+
+  <!-- videoList区域 -->
+  <scroll-view class="videoList" scroll-y>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+    <view class="videoItem">
+      <video class="common"></video>
+      <view class="content">Wiz Khalifa《See You Again》韩国演唱会</view>
+      <view class="footer">
+        <image class="avatar" src="/static/images/logo.png"></image>
+        <text class="nickName">硅谷云音乐</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">18958</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">790</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

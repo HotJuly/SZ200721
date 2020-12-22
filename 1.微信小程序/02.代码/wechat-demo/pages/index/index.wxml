@@ -1,6 +1,10 @@
 <view class="indexContainer">
   <image class="avatarImg" src="/static/images/nvsheng.jpg"></image>
   <text class="username" >你好,{{msg}}</text>
-  <button class="info">欢迎来到尚硅谷
-  </button>
+  <!-- <view catchtap="handleParent">
+    <button class="info" bindtap="handleChild">欢迎来到尚硅谷</button>
+  </view> -->
+  <view capture-catch:tap="handleParent">
+    <button class="info" capture-bind:tap="handleChild">欢迎来到尚硅谷</button>
+  </view>
 </view>

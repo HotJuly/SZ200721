@@ -8,6 +8,14 @@ Page({
     msg:"123"
   },
 
+  handleChild(){
+    console.log('handleChild')
+  },
+
+  handleParent() {
+    console.log('handleParent')
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -63,8 +71,12 @@ Page({
     this.setData({
       msg:234
     })
-    console.log('msg', this.data.msg)
-    console.log('msg', this)
+    // console.log('msg', this.data.msg)
+    this.setData({
+      msg: 345
+    })
+    // console.log('msg', this.data.msg)
+    // console.log('msg', this)
     
 
   },

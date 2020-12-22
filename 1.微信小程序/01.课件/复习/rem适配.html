@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            /* width:50%; */
+            /* width:50vw;
+            height:50vw; */
+            /* 375(设计稿)/remSize */
+            width:375rem;
+            height:375rem;
+            /* vw和vh   100vw=屏幕宽度 100vh=屏幕高度*/
+            /* width:187px;
+            height:187px; */
+        }
+    </style>
+</head>
+<body>
+    <div style="width:200px;">
+        <img src="./1.jpg" alt="" srcset="">
+    </div>
+    <script>
+        // rem适配前提:实现理想视口
+        var width = document.documentElement.clientWidth;
+        var remSize = width/750;
+        document.documentElement.style.fontSize=remSize+"px";
+        console.log(width)
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+在onLoad中,使用wx.getUserInfo方法,检测用户是否已经授权过
+如果已经授权,可以通过success得到用户信息

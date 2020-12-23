@@ -1,6 +1,8 @@
 <view class="indexContainer">
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo123">获取用户信息</button>
-  <image class="avatarImg" src="{{userInfo.avatarUrl}}"></image>
+  <image class="avatarImg" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}"></image>
+  <button class="avatarImg" wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo123">获取用户信息</button>
+  <!-- open-data标签可以展示用户基本数据,但是小程序中无法获取到 -->
+  <!-- <open-data type="userAvatarUrl"></open-data> -->
   <text class="username" >你好,{{userInfo.nickName}}</text>
   <!-- <view catchtap="handleParent">
     <button class="info" bindtap="handleChild">欢迎来到尚硅谷</button>

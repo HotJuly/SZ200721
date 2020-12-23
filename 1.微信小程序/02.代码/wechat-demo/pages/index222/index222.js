@@ -143,8 +143,17 @@ Page({
     // })
     // console.log('msg', this.data.msg)
     // console.log('msg', this)
-    this.setData({
-      msg:"我是修改之后的数据"
+    // this.setData({
+    //   msg:"我是修改之后的数据"
+    // })
+
+    wx.getUserInfo({
+      success:(detail)=>{
+        console.log('success', detail)
+        this.setData({
+          userInfo:detail.userInfo
+        })
+      }
     })
 
   },

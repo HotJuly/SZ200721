@@ -9,3 +9,4 @@
 3.阻止冒泡
 	event.stopPropagation();
 	event.cancelBubble=true;
+

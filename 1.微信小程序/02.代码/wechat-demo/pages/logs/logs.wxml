@@ -1,2 +1,2 @@
 <!--pages/logs/logs.wxml-->
-<text>pages/logs/logs.wxml</text>
+<text bindtap="toIndex">欢迎欢迎,热烈欢迎</text>

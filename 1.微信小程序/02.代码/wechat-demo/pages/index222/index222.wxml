@@ -1,6 +1,7 @@
 <view class="indexContainer">
-  <image class="avatarImg" src="/static/images/nvsheng.jpg"></image>
-  <text class="username" >你好,{{msg}}</text>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo123">获取用户信息</button>
+  <image class="avatarImg" src="{{userInfo.avatarUrl}}"></image>
+  <text class="username" >你好,{{userInfo.nickName}}</text>
   <!-- <view catchtap="handleParent">
     <button class="info" bindtap="handleChild">欢迎来到尚硅谷</button>
   </view> -->

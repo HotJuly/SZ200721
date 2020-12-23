@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    msg:"123"
+    msg:"我是初始化数据",
+    userInfo:{}
   },
 
   handleChild(){
@@ -13,7 +14,72 @@ Page({
   },
 
   handleParent() {
-    console.log('handleParent')
+    /*
+      小程序特点
+        1.没有DOM(ECMA)   --> 小程序中没有BOM,BOM由各大浏览器厂商自己制定,自己提供的
+        2.组件化开发
+
+    */
+    // console.log('handleParent')
+    // console.log('window', window)
+    // console.log('wx', wx)
+    //error:/pages/index/pages/logs/logs
+    //url可以写相对路径,也可以写绝对路径,但是相对路径要注意,他的基础路径是当前js文件所在文件夹
+    //wx.navigateTo保留当前页面,具体说是保留当前页面实例,不会被重新挂载,相当于keep-alive
+    /*
+      wx.navigateTo对应的生命周期:
+        初次显示阶段:
+          1.onLoad
+          2.onShow
+          3.onReady
+        离开阶段:
+          onHide
+      
+      wx.redirectTo对应的生命周期:
+        初次显示阶段:
+          1.onLoad
+          2.onShow
+          3.onReady
+        离开阶段:
+          onUnLoad
+
+
+    */
+
+
+    //wx.redirectTo关闭当前页面,具体说就是卸载当前实例
+    // wx.navigateTo({
+    //   url: '../logs/logs',
+    // })
+    this.setData({
+      msg:"我是修改之后的数据"
+    })
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '/pages/logs/logs',
+      })
+      // wx.redirectTo({
+      //   url: "/pages/logs/logs"
+      // })
+    },1000)
+  },
+
+  getUserInfo123(event){
+    /*
+      回调函数内传递数据:
+        1.实参->形参
+        2.this
+    */
+    // console.log('getUserInfo', event)
+    let userInfo = event.detail.userInfo;
+    if(userInfo){
+      console.log('授权成功',userInfo)
+      this.setData({
+        userInfo
+      })
+    }else{
+      console.log('授权失败')
+    }
   },
 
   /**
@@ -68,16 +134,18 @@ Page({
       })
 
     */
-    this.setData({
-      msg:234
-    })
+    // this.setData({
+    //   msg:234
+    // })
     // console.log('msg', this.data.msg)
-    this.setData({
-      msg: 345
-    })
+    // this.setData({
+    //   msg: 345
+    // })
     // console.log('msg', this.data.msg)
     // console.log('msg', this)
-    
+    this.setData({
+      msg:"我是修改之后的数据"
+    })
 
   },
 

@@ -1,0 +1,39 @@
+<view class="indexContainer">
+  <swiper
+    indicator-dots="true"
+    indicator-color="ivory"
+    indicator-active-color="#d43c33"
+    >
+    <swiper-item>
+      <image src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+  </swiper>
+  <view class="navContainer">
+    <view class="navItem">
+      <text class="iconfont icon-meirituijian-"></text>
+      <text>每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-gedan1"></text>
+      <text>歌单</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont  icon-icon-ranking"></text>
+      <text>排行榜</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text>电台</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont  icon-zhiboguankanliangbofangsheyingshexiangjixianxing"></text>
+      <text>直播</text>
+    </view>
+  </view>
+</view>

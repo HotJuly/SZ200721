@@ -1,0 +1,32 @@
+.indexContainer swiper image{
+  width:100%;
+  height:100%
+}
+
+.navContainer{
+  display:flex;
+  /* justify-content: space-around; */
+}
+
+.navContainer .navItem{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  flex-grow:1;
+}
+
+.navContainer .navItem .iconfont{
+  width:100rpx;
+  height:100rpx;
+  font-size:50rpx;
+  background: rgb(240, 19, 19);
+  color:white;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 50%;
+  margin:20rpx 0;
+}
+
+.navContainer .navItem text{
+  font-size:28rpx;
+}

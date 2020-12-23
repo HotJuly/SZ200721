@@ -1,4 +1,6 @@
 <view class="indexContainer">
+
+  <!-- banner区域 -->
   <swiper
     indicator-dots="true"
     indicator-color="ivory"
@@ -14,6 +16,8 @@
       <image src="/static/images/nvsheng.jpg"></image>
     </swiper-item>
   </swiper>
+
+  <!-- 导航区域 -->
   <view class="navContainer">
     <view class="navItem">
       <text class="iconfont icon-meirituijian-"></text>
@@ -36,4 +40,33 @@
       <text>直播</text>
     </view>
   </view>
+
+  <!-- 推荐歌曲区域 -->
+  <view class="recommnedContainer">
+    <view class="header">
+      <text class="title">
+        推荐歌曲
+       <!-- <view>123</view> -->
+      </text>
+      <view class="moreTitle">
+        <text class="content">为你精心推荐</text>
+        <view class="more">查看更多</view>
+      </view>
+    </view>
+    <scroll-view class="recommendSrcoll" scroll-x enable-flex>
+      <view
+       class="scrollItem"
+       wx:for="{{recommendList}}"
+       wx:key="id"
+       wx:for-item="recommendItem"
+      >
+        <image src="{{recommendItem.picUrl}}"></image>
+        <view>
+          {{recommendItem.name}}
+        </view>
+      </view>
+      
+    </scroll-view>
+  </view>
+
 </view>

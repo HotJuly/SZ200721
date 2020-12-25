@@ -60,12 +60,14 @@
     <NavHeader moduleTitle="排行榜" moreTitle="热歌风向标" />
     <swiper class="topSwiper" next-margin="50rpx">
       <swiper-item wx:for="{{topList}}">
-        <view>{{item.name}}></view>
-        <view>
-          <view class="contentItem" wx:for="{{item.list}}" wx:for-item="contentItem" wx:for-index="contentIndex">
-            <image class="musicImg" src="{{contentItem.al.picUrl}}"></image>
-            <text class="index">{{contentIndex+1}}</text>
-            <text class="name">{{contentItem.al.name}}</text>
+        <view class="topItem">
+          <view class="title">{{item.name}}></view>
+          <view>
+            <view class="contentItem" wx:for="{{item.list}}" wx:for-item="contentItem" wx:for-index="contentIndex">
+              <image class="musicImg" src="{{contentItem.al.picUrl}}"></image>
+              <text class="index">{{contentIndex+1}}</text>
+              <text class="name">{{contentItem.al.name}}</text>
+            </view>
           </view>
         </view>
       </swiper-item>

@@ -70,8 +70,21 @@
   overflow:hidden;
 }
 
+.topContainer{
+  padding:0 20rpx;
+}
+
+.topContainer .title{
+  font-size:26rpx;
+}
+
 .topContainer .topSwiper{
   height:400rpx;
+}
+
+.topContainer .topSwiper swiper-item .topItem{
+  background: #eee;
+  width:97%;
 }
 
 .topContainer .topSwiper swiper-item image{
@@ -83,6 +96,7 @@
 .topContainer .topSwiper swiper-item .contentItem{
   display:flex;
   align-items: center;
+  margin:20rpx 0;
 }
 
 .topContainer .topSwiper swiper-item .contentItem .index{

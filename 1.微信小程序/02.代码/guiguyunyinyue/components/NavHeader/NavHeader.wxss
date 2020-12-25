@@ -1,0 +1,31 @@
+/* components/NavHeader/NavHeader.wxss */
+.header .title{
+  font-size:28rpx;
+  color:#666;
+}
+
+.header .moreTitle{
+
+  /* 
+  开启BFC的方法
+    1.overflow不为默认值
+    2.display:inline-block/table/table-ceil
+    3.float不为默认值
+    4.绝对定位或者固定定位
+    5.根元素html
+   */
+  overflow:hidden;
+}
+
+.header .moreTitle .content{
+  float:left;
+  font-size:30rpx
+}
+
+.header  .moreTitle .more{
+  float:right;
+  font-size:20rpx;
+  border:1rpx solid;
+  padding:10rpx 20rpx;
+  border-radius: 15rpx;
+}

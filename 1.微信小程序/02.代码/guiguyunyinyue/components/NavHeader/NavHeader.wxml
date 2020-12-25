@@ -1,0 +1,10 @@
+<view class="header">
+  <text class="title">
+    {{moduleTitle}}
+    <!-- <view>123</view> -->
+  </text>
+  <view class="moreTitle">
+    <text class="content">{{moreTitle}}</text>
+    <view class="more">查看更多</view>
+  </view>
+</view>

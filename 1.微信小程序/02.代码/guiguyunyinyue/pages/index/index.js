@@ -1,8 +1,10 @@
 import ajax from '../../utils/ajax.js';
+
 Page({
   data:{
     recommendList:[],
-    bannerList:[]
+    bannerList:[],
+    topList:[]
   },
   onLoad(){
     /*
@@ -26,7 +28,29 @@ Page({
         recommendList: result.result
       })
     })
-    // console.log(123)
+
+    let arr = [1,5,10];
+    let index=0;
+    let topList=[]
+
+    while (index < arr.length) {
+      let promise3 = ajax("/top/list", { idx: arr[index++] });
+      console.log(promise3)
+      promise3.then((result) => {
+        //需要排行榜的名称和对应的名次数组,需要用对象存储
+        let obj = {
+          name: result.playlist.name,
+          list: result.playlist.tracks
+        }
+        // console.log(obj)
+        topList.push(obj)
+        this.setData({
+          topList
+        })
+      })
+    }
+
+    
   }
 })
 

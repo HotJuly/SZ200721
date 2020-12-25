@@ -6,6 +6,10 @@
       1)保留公共部分(重复出现的代码,比如wx.request(options对象))
       2)提取动态传入部分()
       3)谁调用谁传入
+    封装组件:
+      1)保留公共部分(template+style)
+      2)提取动态传入部分(会变化的数据)
+      3)谁使用谁传入(props)
 */
 
 export default function (url, data={}, method="GET") {

@@ -49,7 +49,7 @@
 
 5.首页轮播图模块:动态渲染(重点:列表渲染)
   1)查询文档wx:for，使用时与v-for进行对比(wx:for="{{arr}}",遍历出来的元素自动放在item中,当前项下标自动放在index中)
-  2)页面效果出来之后，说明控制台警告：wx:key(wx:key="id"=>:key="item.id")
+  2)页面效果出来之后，说明控制台警告：wx:key(wx:key="id"	=>	:key="item.id")
   3)查询文档wx:key，并且讲解通过wx:for-item和wx:for-index设置默认变量名和下标名
 
 

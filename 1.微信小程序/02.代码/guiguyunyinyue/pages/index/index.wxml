@@ -2,6 +2,7 @@
 
   <!-- banner区域 -->
   <swiper
+    class="bannerSwiper"
     indicator-dots="true"
     indicator-color="ivory"
     indicator-active-color="#d43c33"
@@ -37,16 +38,7 @@
 
   <!-- 推荐歌曲区域 -->
   <view class="recommnedContainer">
-    <view class="header">
-      <text class="title">
-        推荐歌曲
-       <!-- <view>123</view> -->
-      </text>
-      <view class="moreTitle">
-        <text class="content">为你精心推荐</text>
-        <view class="more">查看更多</view>
-      </view>
-    </view>
+    <NavHeader moduleTitle="推荐歌曲" moreTitle="为你精心推荐" />
     <scroll-view class="recommendSrcoll" scroll-x enable-flex>
       <view
        class="scrollItem"
@@ -61,6 +53,23 @@
       </view>
       
     </scroll-view>
+  </view>
+
+  <!-- 排行榜区域 -->
+  <view class="topContainer">
+    <NavHeader moduleTitle="排行榜" moreTitle="热歌风向标" />
+    <swiper class="topSwiper" next-margin="50rpx">
+      <swiper-item wx:for="{{topList}}">
+        <view>{{item.name}}></view>
+        <view>
+          <view class="contentItem" wx:for="{{item.list}}" wx:for-item="contentItem" wx:for-index="contentIndex">
+            <image class="musicImg" src="{{contentItem.al.picUrl}}"></image>
+            <text class="index">{{contentIndex+1}}</text>
+            <text class="name">{{contentItem.al.name}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 
 </view>

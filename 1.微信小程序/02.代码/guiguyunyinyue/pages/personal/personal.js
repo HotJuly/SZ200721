@@ -46,6 +46,18 @@ Page({
     })
   },
 
+  toLogin(){
+    /*
+      wx.navigateTo
+        保留当前页面实例,相当于自带keep-alive
+      wx.redirectTo
+        卸载当前页面实例
+    */
+    wx.navigateTo({
+      url:"/pages/login/login"
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

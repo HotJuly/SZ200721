@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/personal/personal",
     "pages/index/index",
     "pages/video/video"
@@ -10,15 +11,15 @@
     "navigationBarTitleText": "硅谷云音乐",
     "navigationBarTextStyle": "white"
   },
-  "tabBar":{
+  "tabBar": {
     "color": "#333",
     "selectedColor": "#d43c33",
-    "list":[
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"首页",
-        "iconPath":"/static/images/tabs/tab-home.png",
-        "selectedIconPath":"/static/images/tabs/tab-home-current.png"
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/images/tabs/tab-home.png",
+        "selectedIconPath": "/static/images/tabs/tab-home-current.png"
       },
       {
         "pagePath": "pages/video/video",

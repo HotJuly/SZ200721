@@ -3,7 +3,7 @@
     <image class="bg" src="/static/images/personal/bgImg2.jpg"></image>
 
 
-    <view class="user-info-box">
+    <view class="user-info-box" bindtap="toLogin">
       <view class="portrait-box">
         <image class="portrait" src="/static/images/personal/missing-face.png"></image>
       </view>

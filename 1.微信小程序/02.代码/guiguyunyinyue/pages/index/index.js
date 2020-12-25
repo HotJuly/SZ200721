@@ -29,7 +29,7 @@ Page({
       })
     })
 
-    let arr = [1,5,10];
+    let arr = [12,5,10,6];
     let index=0;
     let topList=[]
 

@@ -4,27 +4,19 @@
     <input class="search" placeholder="光辉岁月" placeholder-class="placeholder"></input>
     <image class="logo" src="/static/images/logo.png"></image>
   </view>
-  <scroll-view class="navScroll" enable-flex scroll-x>
-    <view class="navItem active">
-      <text>现场113</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
-    </view>
-    <view class="navItem">
-      <text>现场112233</text>
+  <scroll-view 
+  class="navScroll" 
+  enable-flex 
+  scroll-x
+  bindtap="changeId"
+  >
+    <view
+     class="navItem {{currentId===item.id?'active':''}}"
+      wx:for="{{navList}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      >
+      <text data-id="{{item.id}}">{{item.name}}</text>
     </view>
   </scroll-view>
 </view>

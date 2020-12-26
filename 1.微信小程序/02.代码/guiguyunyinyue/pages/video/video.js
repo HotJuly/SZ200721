@@ -1,11 +1,23 @@
 // pages/video/video.js
+import ajax from '../../utils/ajax.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    navList:[],
+    currentId:null
+  },
 
+  changeId(event){
+    // console.log('changeId',event.target.dataset.id);
+    let {id} = event.target.dataset;
+    if (id) {
+      this.setData({
+        currentId: id
+      })
+    }
   },
 
   /**
@@ -25,8 +37,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow:async function () {
+    let result = await ajax("/video/group/list");
+    // console.log('result', result)
+    let navList = result.data.slice(0,14);
+    this.setData({
+      navList,
+      currentId: navList[0].id
+    })
   },
 
   /**

@@ -32,11 +32,11 @@ export default function (url, data={}, method="GET") {
         /*
           不是每个请求返回的cookie都能用,只有登录接口返回的cookie才是需要的
         */
-        let arr = res.cookies.filter((item)=>{
-          return item.indexOf('MUSIC_U')===0;
-        })
         // console.log('cookie',arr)
         if (data.isLogin) {
+          let arr = res.cookies.filter((item) => {
+            return item.indexOf('MUSIC_U') === 0;
+          })
           wx.setStorage({
             key: "cookies",
             data: JSON.stringify(arr)

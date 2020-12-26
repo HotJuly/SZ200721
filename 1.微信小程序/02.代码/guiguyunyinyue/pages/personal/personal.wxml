@@ -5,10 +5,10 @@
 
     <view class="user-info-box" bindtap="toLogin">
       <view class="portrait-box">
-        <image class="portrait" src="/static/images/personal/missing-face.png"></image>
+        <image class="portrait" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/static/images/personal/missing-face.png'}}"></image>
       </view>
       <view class="info-box">
-        <text class="username">游客</text>
+        <text class="username">{{userInfo.nickname?userInfo.nickname:'游客'}}</text>
       </view>
     </view>
 
@@ -56,8 +56,25 @@
     </view>
 
     <view class="playContent">
-        <view class="noData">暂时没有数据</view>
+      <view class="playList">
+        <view class="playTitle">最近播放</view>
+        <scroll-view class="playScroll" scroll-x enable-flex>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="/static/images/nvsheng.jpg"></image>
+        </scroll-view>
+        <!-- <view class="noData">暂时没有数据</view> -->
       </view>
+    </view>
 
     <view class="cardList">
       <view class="card-item">

@@ -25,8 +25,9 @@
         bindchange="handleInput"
         />
       </view>
+      <!-- <view>请输入用户名密码</view> -->
     </view>
-    <button class="confirm-btn">登录</button>
+    <button class="confirm-btn" bindtap="handleLogin">登录</button>
     <view class="forget-section">
       忘记密码?
     </view>

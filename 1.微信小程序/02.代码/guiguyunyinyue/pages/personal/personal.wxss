@@ -172,6 +172,28 @@
   margin-top:20rpx;
 }
 
+
+.playList .playTitle{
+  font-size:24rpx;
+  color:#333;
+  text-indent: 20rpx;
+  padding:20rpx;
+}
+
+.playList .playScroll{
+  display:flex;
+  height:200rpx;
+  flex-wrap:nowrap;
+  /* white-space:nowrap; */
+}
+
+.playList .playScroll image{
+  width:160rpx;
+  height:160rpx;
+  margin-left: 20rpx;
+  flex-shrink: 0;
+}
+
 .playList .noData{
   line-height:160rpx;
   text-indent: 40rpx;

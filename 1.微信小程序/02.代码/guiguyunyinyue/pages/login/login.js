@@ -1,4 +1,5 @@
 // pages/login/login.js
+import ajax from '../../utils/ajax.js'
 Page({
 
   /**
@@ -43,6 +44,62 @@ Page({
     this.setData({
       [type]:value
     })
+  },
+
+  async handleLogin(){
+    let {phone,password} =this.data;
+    if(!phone){
+      /*
+        6个false值
+        1.Number 0 NaN
+        2.String ""
+        3.Boolean false
+        4.Undefined
+        5.Null
+      */
+      // this.$message({
+      //   title:
+      // })
+      wx.showToast({
+        title: '请输入用户名',
+        icon:"none"
+      })
+      return;
+    }
+    if (!password) {
+      wx.showToast({
+        title: '请输入密码',
+        icon: "none"
+      })
+      return;
+    }
+    /*
+      1.在哪发
+      2.怎么发
+      3.往哪发
+    */
+    let result = await ajax("/login/cellphone",{
+      phone,
+      password
+    });
+    if(result.code===200){
+      wx.showToast({
+        title: '登陆成功,即将跳转个人中心,请稍等',
+        icon:"none"
+      })
+      console.log(result)
+      // 存储storage
+      wx.setStorage({
+        key:"userInfo",
+        data:JSON.stringify(result.profile)
+      })
+
+
+      wx.switchTab({
+        url: '/pages/personal/personal',
+      })
+    }
+    // console.log(result)
   },
 
   /**

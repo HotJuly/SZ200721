@@ -6,7 +6,8 @@ Page({
    */
   data: {
     moveDistance:0,
-    moveTransition:""
+    moveTransition:"",
+    userInfo:{}
   },
 
   handleTouchStart(event){
@@ -62,7 +63,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('onLoad')
+    /*
+      1.从Storage将userInfo读取出来(注意:当前数据类型是string)
+      2.转译JSON.parse()
+      3.动态渲染到页面上
+    */
+    /*
+      问题:登录成功之后,回到个人中心页面,数据无法正常展示
+      原因:因为跳转到login页面,使用的是wx.navigateTo,会保留当前页面实例,所以onLoad只会执行一次
+      解决:
+        1.换生命周期->onShow
+        2.换跳转方法->wx.redirectTo
+    */
+    // console.log(wx.getStorageSync("userInfo"))
+    // let userInfo =wx.getStorageSync("userInfo");
+    // if(userInfo){
+    //   this.setData({
+    //     userInfo:JSON.parse(userInfo)
+    //   })
+    // }
   },
 
   /**
@@ -76,7 +96,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let userInfo = wx.getStorageSync("userInfo");
+    if (userInfo) {
+      this.setData({
+        userInfo: JSON.parse(userInfo)
+      })
+    }
   },
 
   /**

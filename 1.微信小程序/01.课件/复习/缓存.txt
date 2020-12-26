@@ -1,0 +1,24 @@
+面试题:cookie,sessionStorage,localStorage的区别
+
+生命周期:
+	cookie(max-age超时时间)	没有设置超时时间,浏览器关闭失效
+				设置超时时间,超过设置时间就作废
+	sessionStorage		浏览器关闭失效
+	localStorage		用户不主动删除或者使用API删除,永久存在
+
+存储位置
+	cookie(max-age超时时间)	没有设置超时时间,存储于内存中
+				设置超时时间,存储于硬盘中
+	sessionStorage		存储于内存中
+	localStorage		存储于硬盘中
+
+
+存储大小
+	cookie		4KB	
+	sessionStorage	5MB
+	localStorage	20MB
+
+与服务器之间的关系
+	cookie		服务器创建,浏览器存储,发送请求自动携带上	
+	sessionStorage	跟服务器没啥关系,不熟
+	localStorage	跟服务器没啥关系,不熟

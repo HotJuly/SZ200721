@@ -80,14 +80,15 @@ Page({
     */
     let result = await ajax("/login/cellphone",{
       phone,
-      password
+      password,
+      isLogin:true
     });
     if(result.code===200){
       wx.showToast({
         title: '登陆成功,即将跳转个人中心,请稍等',
         icon:"none"
       })
-      console.log(result)
+      // console.log(result)
       // 存储storage
       wx.setStorage({
         key:"userInfo",

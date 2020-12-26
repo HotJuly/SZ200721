@@ -22,3 +22,8 @@
 	cookie		服务器创建,浏览器存储,发送请求自动携带上	
 	sessionStorage	跟服务器没啥关系,不熟
 	localStorage	跟服务器没啥关系,不熟
+
+token与上述的区别
+token数据类型:字符串
+内容:用户唯一标识->md5(盐salt)->得到base64字符串
+公司中:token每15分钟左右更换一个,过期时间一般7天或者15天

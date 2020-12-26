@@ -7,7 +7,8 @@ Page({
    */
   data: {
     navList:[],
-    currentId:null
+    currentId:null,
+    videoList:[]
   },
 
   changeId(event){
@@ -45,6 +46,17 @@ Page({
       navList,
       currentId: navList[0].id
     })
+
+    let videoListData = await ajax('/video/group',{
+      id:58100
+    })
+    let videoList = videoListData.datas.map((item)=>{
+      return item.data
+    })
+    this.setData({
+      videoList
+    })
+    // console.log('videoListData', videoListData)
   },
 
   /**

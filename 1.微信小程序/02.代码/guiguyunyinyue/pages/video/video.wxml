@@ -19,4 +19,30 @@
       <text data-id="{{item.id}}">{{item.name}}</text>
     </view>
   </scroll-view>
+
+  
+  <!-- videoList区域 -->
+  <scroll-view class="videoList" scroll-y>
+    <view class="videoItem" wx:for="{{videoList}}" wx:key="urlInfo.url">
+      <video class="common" src="{{item.urlInfo.url}}"></video>
+      <view class="content">{{item.title}}</view>
+      <view class="footer">
+        <image class="avatar" src="{{item.creator.avatarUrl}}"></image>
+        <text class="nickName">{{item.creator.nickname}}</text>
+        <view class="comments_praised">
+          <text class="item">
+            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="count">{{item.shareCount}}</text>
+          </text>
+          <text class="item">
+            <text class="iconfont icon-pinglun1"></text>
+            <text class="count">{{item.commentCount}}</text>
+          </text>
+          <button class="item btn">
+            <text class="iconfont icon-gengduo"></text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

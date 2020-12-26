@@ -1,0 +1,28 @@
+1.下拉刷新数据
+	两种方法:
+		1)局部下拉刷新:通过scroll-view实现
+			1.给scroll-view标签添加refresher-enabled(开启下拉动画)
+				问题:当前动画不回家了
+			2.监视用户下拉操作,当用户下拉之后,发送请求
+				给scroll-view标签绑定事件:refresherrefresh
+				发送请求:getVideoList
+			3.当数据回来之后,关闭下拉动画
+				通过标签属性refresher-triggered,并通过data控制,将他变为false即可
+
+		2)整个页面下拉刷新:通过页面配置开启enablePullDownRefresh:true+页面监听onPullDownRefresh
+	
+
+2.上拉加载更多
+	需求:当用户上拉触底,获取过多数据
+	拆解需求:
+		1.怎么知道用户什么时候上拉触底->监听
+			绑定事件监听,事件:scrolltolower
+		2.获取过多数据
+			由于没有真实接口,所以对旧数据进行了深拷贝
+
+
+3.导航条中选项动画
+	1.使用scroll-into-view可以让某个节点跑到最前面去
+		匹配规则:scroll-into-view的值  === 标签id
+		使用data中的scrollId,控制scroll-into-view的值的切换
+	2.通过scroll-with-animation开启过渡动画

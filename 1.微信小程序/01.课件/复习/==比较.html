@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //基本数据类型VS基本数据类型
+        //js中6个false值:0,NaN,"",false,undefined,null
+        //规则:toNumber
+        // console.log(true==1)        //true      1===1
+        // console.log(false==1)       //false     0===1
+        // console.log(true=="")       //false     1===0
+        // console.log(false=="")      //true      0===0
+
+        // console.log(1=="")          //false     1===0
+        // console.log(0=="")          //true      0===0
+
+        // console.log(1=="1")         //true      1===1
+        // console.log(1=="2")         //false     1===2
+
+        // console.log(true=="true")   //false      1===NaN
+        // console.log(false=="true")  //false     0===NaN
+
+
+        //对象数据数据类型VS对象数据类型
+        //比较地址值
+        console.log([]==[])     //false     new Array([]) === new Array([])
+        console.log({}=={})     //false     new Object({}) === new Object({})
+        console.log([]!=[])     //true
+        console.log([]!==[])   //true
+
+        //对象数据类型VS基本数据类型
+        //ValueOf()(Number,String,Boolean) =>  toString()
+        console.log([]==![])    //true   []==(![])   []==false  ""==false   0===0
+        console.log({}==!{})    //false   {}==(!{}) {}==false   "[object Object]"==false    NaN===0
+        console.log(new Number(3)==3)
+
+
+
+    </script>
+</body>
+</html>

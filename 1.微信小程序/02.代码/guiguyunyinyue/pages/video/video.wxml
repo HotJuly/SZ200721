@@ -1,2 +1,30 @@
-<!--pages/video/video.wxml-->
-<text>pages/video/video.wxml</text>
+<view class="videoContainer">
+  <view class="header">
+    <image class="videoLogo" src="/static/images/video/video.jpg"></image>
+    <input class="search" placeholder="光辉岁月" placeholder-class="placeholder"></input>
+    <image class="logo" src="/static/images/logo.png"></image>
+  </view>
+  <scroll-view class="navScroll" enable-flex scroll-x>
+    <view class="navItem active">
+      <text>现场113</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+    <view class="navItem">
+      <text>现场112233</text>
+    </view>
+  </scroll-view>
+</view>

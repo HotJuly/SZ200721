@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+import ajax from '../../utils/ajax.js'
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
   data: {
     moveDistance:0,
     moveTransition:"",
-    userInfo:{}
+    userInfo:{},
+    playList:[]
   },
 
   handleTouchStart(event){
@@ -95,11 +97,30 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: async function () {
     let userInfo = wx.getStorageSync("userInfo");
     if (userInfo) {
+      userInfo = JSON.parse(userInfo);
       this.setData({
-        userInfo: JSON.parse(userInfo)
+        userInfo
+      })
+      let playListData = await ajax('/user/record',{
+        uid: userInfo.userId,
+        type:1
+      })
+      /*
+        forEach =>  没有返回值
+        map =>  有返回值,return的结果,新产生的数组长度等于旧数组长度
+        filter  =>  有返回值,return的结果为true就保留,新产生的数组长度不等于旧数组长度
+        合不合适
+        面试题:for循环,forEach,map性能排行榜
+        for循环>forEach>map
+      */
+      playListData=playListData.weekData.map((item)=>{
+        return item.song.al.picUrl;
+      })
+      this.setData({
+        playList:playListData
       })
     }
   },

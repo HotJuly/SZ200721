@@ -59,18 +59,7 @@
       <view class="playList">
         <view class="playTitle">最近播放</view>
         <scroll-view class="playScroll" scroll-x enable-flex>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
-          <image src="/static/images/nvsheng.jpg"></image>
+          <image src="{{item}}" lazy-load wx:for="{{playList}}" wx:key="*this"></image>
         </scroll-view>
         <!-- <view class="noData">暂时没有数据</view> -->
       </view>

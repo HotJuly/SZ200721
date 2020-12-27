@@ -34,7 +34,7 @@
   bindrefresherrefresh="handlePullDown"
   bindscrolltolower="handleScrollToLower"
   >
-    <view class="videoItem" wx:for="{{videoList}}" wx:key="urlInfo.url">
+    <view class="videoItem" wx:for="{{videoList}}" wx:key="url">
       <video class="common" src="{{item.urlInfo.url}}"></video>
       <view class="content">{{item.title}}</view>
       <view class="footer">

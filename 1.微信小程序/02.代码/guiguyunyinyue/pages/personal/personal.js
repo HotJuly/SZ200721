@@ -32,7 +32,7 @@ Page({
       当移动距离为负数(就是向上移动)时,不做处理
       当移动距离超过80rpx(就是向下移动)时,不做处理
     */
-    if(moveDistance<0||moveDistance>80)return;
+    if (moveDistance < 0 || moveDistance > 80)return;
     this.setData({
       moveDistance
     })

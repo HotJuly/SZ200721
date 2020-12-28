@@ -79,6 +79,37 @@ Page({
     },3000)
   },
 
+  //当视频开始播放时,会执行的操作
+  handlePlay(event){
+    //用来获取上个视频的id
+    let oldVid = this.oldVid;
+
+    //用来获取当前视频的id
+    let {id} = event.currentTarget;
+
+    //由于第一个视频播放的时候,没有上一个视频,所以oldVid可能会是undefined
+    if (oldVid&&oldVid!=id) {
+      // 获得对应video标签的视频上下文对象
+      let videoContext = wx.createVideoContext(oldVid);
+
+      //调用pause方法,暂停视频播放
+      videoContext.pause();
+    }
+
+    //把当前视频id存储起来,当第二个视频开始播放时候(play事件触发)
+    //该id就变成上个视频的id了
+    this.oldVid=id;
+  },
+
+  //专门用于测试暂停视频API是否好使
+  testAPI(){
+    // 获得对应video标签的视频上下文对象
+    let videoContext = wx.createVideoContext("154D37C766867280A35679B4F4674F27");
+
+    //调用pause方法,暂停视频播放
+    videoContext.pause();
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -150,7 +181,40 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function ({ from , target }) {
+    /*
+      实现转发功能的方法:
+        1.通过右上角的转发按钮
+        2.通过button组件的open-type属性设置为share
+      
+      业务场景:
+        1.如果是右上角的转发按钮,转发内容是当前小程序页面截图
+        2.如果是视频的分享button,转发内容是当前视频截图
 
+        实现区分的方法:通过onShareAppMessage传入的实参中的from可以判断
+          如果是menu,就代表是右上角转发触发的
+          如果是button,就代表是button组件触发的
+
+        实现自定义分享内容的方法:
+          通过return 一个对象来控制
+    */
+    if(from==="button"){
+      console.log(target)
+      //缺少标题跟图片
+      //注意!!!自定义属性名称全小写,即便是写了大写,也会自动转为小写
+      let {title,imageurl} = target.dataset;
+      return {
+        title,
+        path:"/pages/video/video",
+        imageUrl: imageurl
+      }
+    }else if(from==="menu"){
+      return{
+        title:"硅谷云音乐",
+        path:"/pages/index/index",
+        imageUrl:"/static/images/nvsheng.jpg"
+      }
+    }
+    // console.log('onShareAppMessage', from)
   }
 })

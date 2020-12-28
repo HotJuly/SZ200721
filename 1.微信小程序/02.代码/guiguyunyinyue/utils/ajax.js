@@ -22,6 +22,7 @@ export default function (url, data={}, method="GET") {
     }
     wx.request({
       url: 'http://localhost:3000' + url,
+      // url: 'https://guiguyunyinyue.cn1.utools.club' + url,
       data,
       method,
       header:{

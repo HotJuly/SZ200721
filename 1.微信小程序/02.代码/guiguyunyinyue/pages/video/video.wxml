@@ -2,7 +2,7 @@
   <view class="header">
     <image class="videoLogo" src="/static/images/video/video.jpg"></image>
     <input class="search" placeholder="光辉岁月" placeholder-class="placeholder"></input>
-    <image class="logo" src="/static/images/logo.png"></image>
+    <image class="logo" bindtap="testAPI" src="/static/images/logo.png"></image>
   </view>
   <scroll-view 
   class="navScroll" 
@@ -35,7 +35,12 @@
   bindscrolltolower="handleScrollToLower"
   >
     <view class="videoItem" wx:for="{{videoList}}" wx:key="url">
-      <video class="common" src="{{item.urlInfo.url}}"></video>
+      <video
+      id="{{item.vid}}"
+      class="common" 
+      src="{{item.urlInfo.url}}"
+      bindplay="handlePlay"
+       ></video>
       <view class="content">{{item.title}}</view>
       <view class="footer">
         <image class="avatar" src="{{item.creator.avatarUrl}}"></image>
@@ -49,7 +54,8 @@
             <text class="iconfont icon-pinglun1"></text>
             <text class="count">{{item.commentCount}}</text>
           </text>
-          <button class="item btn">
+          <button class="item btn" data-title="{{item.title}}" 
+          data-imageurl="{{item.coverUrl}}" open-type="share">
             <text class="iconfont icon-gengduo"></text>
           </button>
         </view>

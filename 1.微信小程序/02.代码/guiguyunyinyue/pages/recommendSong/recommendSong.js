@@ -11,6 +11,23 @@ Page({
     recommendList:[]
   },
 
+  toSong(event) {
+    // console.log(event.currentTarget.dataset.song)
+    /*
+      由于对象转json之后,字符数量过多,无法完整传递
+      最终将歌曲id传递给song页面
+
+      路由传参的手段:
+        通过query传参传递过去
+        在onLoad中的形参options中可以得到query对象
+    */
+    // let {song} = event.currentTarget.dataset;
+    let {songid} = event.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/song/song?songId=' + songid
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

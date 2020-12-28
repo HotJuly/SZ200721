@@ -16,7 +16,12 @@
 
     <!-- 音乐列表 -->
     <scroll-view class="scrollView" scroll-y>
-      <view class="recommendItem" wx:for="{{recommendList}}" wx:key="id">
+      <view class="recommendItem"
+      wx:for="{{recommendList}}" 
+      wx:key="id"
+      data-songId="{{item.id}}"
+      bindtap="toSong"
+      >
         <image src="{{item.album.picUrl}}"></image>
         <view class="musicContent">
           <text class="musicName">{{item.name}}</text>

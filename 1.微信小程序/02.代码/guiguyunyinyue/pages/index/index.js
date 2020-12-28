@@ -6,6 +6,11 @@ Page({
     bannerList:[],
     topList:[]
   },
+  toRecommendSong(){
+    wx.navigateTo({
+      url: '/pages/recommendSong/recommendSong'
+    })
+  },
   onLoad(){
     /*
       1.在哪发

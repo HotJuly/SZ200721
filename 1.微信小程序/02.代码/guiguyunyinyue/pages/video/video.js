@@ -10,7 +10,8 @@ Page({
     currentId:null,
     videoList:[],
     triggered:false,
-    scrollId:""
+    scrollId:"",
+    videoId:""
   },
 
   async changeId(event){
@@ -110,6 +111,20 @@ Page({
     videoContext.pause();
   },
 
+  showVideo(event){
+    // 获取被点击图片的id
+    let {id} =event.currentTarget;
+
+    //将当前id更新到data中,让页面中的image和video组件进行切换,显示出对应的video
+    this.setData({
+      videoId:id
+    })
+
+    //生成视频上下文对象,控制视频播放
+    let videoContext = wx.createVideoContext(id);
+    videoContext.play();
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -128,6 +143,31 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow:async function () {
+    let cookies = wx.getStorageSync('cookies');
+    //如果当前用户没有登录,展示模态对话框,让用户回到首页或者去登陆
+    if(!cookies){
+      wx.showModal({
+        title:"请先登录",
+        content:"该功能需要登录账号",
+        cancelText:"回到首页",
+        confirmText:"去登陆",
+        success: ({ confirm })=>{
+          //可以通过data中的cancel或者confirm判断当前是点击了取消还是确定
+          // console.log('success', confirm)
+          if (confirm){
+            //如果用户点击了去登陆,就跳转到登录页面
+            wx.redirectTo({
+              url: '/pages/login/login',
+            })
+          } else {
+            wx.switchTab({
+              url: '/pages/index/index',
+            })
+          }
+        }
+      })
+      return;
+    }
     let result = await ajax("/video/group/list");
     // console.log('result', result)
     let navList = result.data.slice(0,14);

@@ -1,0 +1,15 @@
+问题:同一页面存在多个video时，video无法正常播放一直在加载转圈
+需求1:需要使用image标签替换video标签进行展示
+
+问题:当前已经使用image替换video,但是image无法播放视频
+需求:当用户点击image时,播放对应的视频(用video替换image)
+拆解需求:
+	1.如何知道用户什么时候点击image
+		绑定事件监听,事件名称:tap
+	2.如何播放视频
+		通过js播放视频
+		1.生成video组件对应的上下文对象(videocontext)
+		2.videocontext.play()播放视频
+	3.如何知道对应的视频是哪个
+		让image标签和video标签的id相同,产生对应关系
+		通过wx:if进行标签之间的切换,如果data中记录的id与某个image相同,就让对应的video组件显示出来,image隐藏

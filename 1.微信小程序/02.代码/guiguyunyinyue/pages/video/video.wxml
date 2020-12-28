@@ -35,11 +35,19 @@
   bindscrolltolower="handleScrollToLower"
   >
     <view class="videoItem" wx:for="{{videoList}}" wx:key="url">
+      <image
+      id="{{item.vid}}"
+      src="{{item.coverUrl}}" 
+      class="common"
+      bindtap="showVideo"
+      wx:if="{{item.vid!==videoId}}"
+       ></image>
       <video
       id="{{item.vid}}"
       class="common" 
       src="{{item.urlInfo.url}}"
       bindplay="handlePlay"
+      wx:else
        ></video>
       <view class="content">{{item.title}}</view>
       <view class="footer">

@@ -1,4 +1,4 @@
-<view class="songContainer">
+<view class="songContainer {{isPlay?'isplaying':''}}">
   <view class="name">{{songObj.ar[0].name}}</view>
   <view class="keng"></view>
   <image class="needle" src="/static/images/song/needle.png"></image>
@@ -11,7 +11,7 @@
   <view class="musicControl">
     <text class="iconfont icon-iconsMusicyemianbofangmoshiShuffle" ></text>
     <text class="iconfont icon-shangyishou" id="pre"></text>
-    <text class="iconfont big icon-bofang"></text>
+    <text class="iconfont big {{isPlay?'icon-zanting':'icon-bofang'}}" bindtap="handlePlay"></text>
     <text class="iconfont icon-next"id="next"></text>
     <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
   </view>

@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    msg:"我是app的初始数据",
+    isPlay:false,
+    audioId:null
   }
 })

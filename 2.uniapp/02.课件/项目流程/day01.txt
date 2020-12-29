@@ -1,0 +1,102 @@
+1.uniApp简介
+  1)使用 Vue.js 开发所有前端应用的框架
+  2)可发布到iOS、Android、H5、以及各种小程序、快应用等多个平台
+  3)uni-app在手，做啥都不愁。即使不跨端
+
+
+2.HbuilerX基本使用及设置
+  1)创建项目->选择uni-app项目
+  2)配置浏览器以及微信小程序开发工具地址
+  3)小程序中开启服务器端口
+  4)配置Chrome的安装地址
+
+
+3.uniApp项目文件介绍
+  1)manifest.json,用于配置当前项目的基础信息	对应小程序中的project.config.json
+  2)pages.json,在框架->配置中查看全局配置		对应小程序中的app.json
+	uniapp		小程序		作用
+	pages		pages+页面配置	配置页面路径
+	globalStyle	window		设置窗口样式
+  3)main.js,该项目的入口文件	对应小程序中的app.js内部的App(),挂载App
+  4)App.vue,该项目的根实例	对应小程序中的App()所需传入的配置对象
+  5)unpackage文件夹,只有运行小程序才会出现,内部存着打包成原生小程序的文件
+  6)pages,用于存储该项目的所有页面
+
+
+4.开发项目介绍
+  本次仿造的是网易严选的移动端制作的小程序
+  注意:引入项目时,必须直接引入项目的根文件夹
+
+
+5.首页模块(头部搭建)
+  1)准备工作:引入静态文件,images文件夹
+  2)设置样式解析为stylus,出现问题!!!
+	问题:Vue项目中如果想用stylus,需要安装stylus以及stylus-loader
+	解决:HbuilderX中,只需要在工具->插件安装->stylus编译->点击安装即可
+  3)完成头部静态样式
+
+
+6.首页模块(iconfont图标使用)
+  1)必须使用本地文件
+  2)在全局公共样式中,引入iconfont的css文件
+
+
+7.首页模块(导航部分)
+  1)使用scroll-view组件实现水平滑动效果
+  2)给scroll-view组件开启flex,添加标签属性enable-flex,出现问题!!!
+	问题:内部元素布局依旧为纵向布局,不受影响
+	解决:将内部元素设置为inline-block
+
+
+8.koa搭建服务器
+  1)使用npm init -y生成package.json
+  2)下载koa以及koa-router包
+  3)创建server.js文件,引入koa以及koa-router
+  4)创建koa实例,通过koa.listen(端口号,回调函数)监听端口
+  5)创建koaRouter实例,通过koa的实例身上的use方法,分别使用koaRouter实例的routes以及allowedMethods调用返回的中间键函数
+  6)通过koaRouter实例对象注册路由,响应请求
+
+
+9.封装功能函数
+  1)封装请求函数
+  2)区分onLoad以及mounted
+
+
+10.首页模块(导航条动态渲染,uniapp配置代理)
+  1)将请求到的数据保存在data中,通过v-for遍历循环生成动态效果
+	注意:v-for的解析优先级比v-if高
+  2)uniapp中解决h5页面的跨域方法:
+	1.使用Hbuilder X内置浏览器,该浏览器不会出现跨域问题报错
+	2.与Vue-Cli 3.0相同,配置vue.config.js文件实现代理服务器转发请求
+	3.在manifest.json进行devServer的配置,配置与webpack的devServer相同
+  3)根据不同环境,添加基础路径
+	1)如果uni.getSystemInfoSync().platform获取到的是devtools,说明当前是小程序开发
+	2)如果uni.getSystemInfoSync().platform获取到的是ios,
+	   同时process.env.NODE_ENV获取到的是development,说明是h5端开发
+
+
+11.首页模块(抽取组件,自定义模板)
+  1)实现导航条点击交互
+  2)观察分析页面,提取组件
+  3)自定义代码模版
+  4)轮播图实现
+
+
+12.首页模块(Vuex使用)
+  1)复习Vuex相关知识
+	1.理解
+	2.Vuex的核心概念
+  2)在项目中使用上Vuex
+  3)将发送请求代码放置action中
+
+
+13.首页模块(kingKongList板块实现)
+  1)完成静态页面绘制
+  2)通过mapState获取Vuex状态,并实现动态展现
+
+
+14.首页模块(封装categorys组件)
+  1)完成静态页面绘制
+  2)使用scroll-view实现categorys组件内部横向滚动效果
+  3)通过mapState获取Vuex状态,并实现动态展现
+  4)使用scroll-view实现recommend组件竖向滚动效果

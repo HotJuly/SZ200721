@@ -1,4 +1,5 @@
 // pages/song/song.js
+import PubSub from 'pubsub-js'
 import ajax from '../../utils/ajax.js';
 let appInstance = getApp();
 Page({
@@ -13,6 +14,12 @@ Page({
     isPlay:false
   },
 
+  switchType(event) {
+    let {id} =event.currentTarget;
+    PubSub.publish('switchType', id)
+  },
+
+  // 用于处理用户点击播放按钮
   async handlePlay() {
     /*
       通过isPlay属性,记录当前音频的播放状态,
@@ -53,17 +60,11 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad:async function (options) {
-    // console.log('appInstance1', appInstance);
-    // appInstance.globalData.msg="我是修改之后的数据"
-    // console.log('appInstance2', appInstance);
-    // console.log('isPlay', appInstance.globalData.isPlay);
-    let {songId} = options;
-    let songData = await ajax('/song/detail',{
-      ids:songId
+  // 用于请求当前歌曲详细信息
+  async getMusicDetail(songId){
+    songId = songId?songId:this.data.songId;
+    let songData = await ajax('/song/detail', {
+      ids: songId
     });
 
     let songObj = songData.songs[0];
@@ -71,9 +72,36 @@ Page({
       songObj,
       songId
     })
+
     wx.setNavigationBarTitle({
       title: songObj.name
     });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad:async function (options) {
+    // console.log(PubSub)
+
+    // console.log('appInstance1', appInstance);
+    // appInstance.globalData.msg="我是修改之后的数据"
+    // console.log('appInstance2', appInstance);
+    // console.log('isPlay', appInstance.globalData.isPlay);
+    let {songId} = options;
+    this.getMusicDetail(songId);
+    // let songData = await ajax('/song/detail',{
+    //   ids:songId
+    // });
+
+    // let songObj = songData.songs[0];
+    // this.setData({
+    //   songObj,
+    //   songId
+    // })
+    // wx.setNavigationBarTitle({
+    //   title: this.data.songObj.name
+    // });
 
     //获取缓存好的上一首歌的播放状态和id
     let {isPlay,audioId} = appInstance.globalData;
@@ -84,6 +112,16 @@ Page({
           isPlay:true
       })
     }
+
+    PubSub.subscribe("changeId",(msg,data)=>{
+      console.log('changeId', data)
+      this.setData({
+        songId: data
+      })
+
+      this.getMusicDetail(data);
+
+    })
 
 
   },

@@ -1,4 +1,5 @@
 // pages/recommendSong/recommendSong.js
+import PubSub from 'pubsub-js'
 import ajax from '../../utils/ajax.js'
 Page({
 
@@ -8,7 +9,8 @@ Page({
   data: {
     day:"28",
     month:"12",
-    recommendList:[]
+    recommendList:[],
+    currentIndex:null
   },
 
   toSong(event) {
@@ -22,7 +24,10 @@ Page({
         在onLoad中的形参options中可以得到query对象
     */
     // let {song} = event.currentTarget.dataset;
-    let {songid} = event.currentTarget.dataset;
+    let {songid , index} = event.currentTarget.dataset;
+    this.setData({
+      currentIndex:index
+    })
     wx.navigateTo({
       url: '/pages/song/song?songId=' + songid
     })
@@ -72,6 +77,38 @@ Page({
     this.setData({
       recommendList: recommendData.recommend.slice(0,14)
     })
+
+    PubSub.subscribe('switchType', (msg,data)=>{
+      // console.log(msg, data)
+      /*
+        根据传过来的数据,找对应的歌曲
+        data等于"next",找下一首,
+        data等于"pre",找上一首
+      */
+      let {currentIndex,recommendList} = this.data;
+      if(data==="next"){
+        if(currentIndex===recommendList.length-1){
+          currentIndex=0;
+        } else {
+          currentIndex++;
+        }
+      }
+      if (data === "pre") {
+        if (currentIndex === 0) {
+          currentIndex = recommendList.length - 1;
+        } else {
+          currentIndex--;
+        }
+      }
+      let songId = recommendList[currentIndex].id;
+
+      this.setData({
+        currentIndex
+      })
+
+      PubSub.publish('changeId', songId)
+      // console.log("songId", songId)
+    });
   },
 
   /**

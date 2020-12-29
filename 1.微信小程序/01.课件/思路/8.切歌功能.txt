@@ -1,0 +1,47 @@
+需求:当用户点击上一首/下一首按钮,播放对应歌曲
+拆分需求:
+	1.当用户点击上一首/下一首按钮的时候
+		绑定事件,事件名称:tap
+	2.播放对应歌曲
+		继续拆分:
+			1.如何播放歌曲
+				通过背景音频管理器进行播放
+				需要歌曲的id,用来请求数据
+			2.如何找到对应的歌曲
+				找到对应歌曲的id
+				问题:song页面只有当前歌曲详细信息,不可能有上一首或者下一首歌的id
+				数据源:recommendSong页面存储着所有歌曲的数据,其实recommendSong就是播放列表
+				数据在recommendSong,使用数据在song页面
+				问题:如何实现两个页面(组件)之间的通信
+				react可以使用PubSub,vue可以使用事件总线
+					前提条件(重要!!!):必须保证订阅者和发布者同时存在
+					订阅者:一方想要接收数据(听)
+					发布者:另一方想要分发数据(说)
+
+				流程一:
+				问题:业务场景是用户点击之后,才播放下一首歌
+				tap事件在song页面执行,recommendSong根本不知道tap事件是否执行了
+				recommenSong想知道用户什么时候点击了切换按钮,song需要告诉recommendSong
+				订阅者:recommenSong页面
+				发布者:song页面
+				
+				流程二:
+				recommendSong知道用户点击了下一首按钮,去找下一首歌曲的id
+				问题:怎么知道现在是哪一首
+				思路:用户点击跳转到song页面的一瞬间,就已经可以确定当前歌曲是谁
+				解决:跳转的一瞬间,记录当前点击的index
+
+				流程三:
+				recommendSong找到了下一首歌曲的id,需要把id发给song页面
+				想要数据的是song,数据在recommendSong
+				订阅者:song页面
+				发布者:recommendSong页面
+
+				
+
+				问题:需要使用到PubSub
+				解决:小程序使用npm包,分为四个步骤,详情看word
+				思考:
+					接收:函数	PubSub.subscribe('MY TOPIC', mySubscriber)
+					发布:数据
+					

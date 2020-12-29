@@ -1,0 +1,12 @@
+1.想要运行成h5页面
+配置chrome浏览器
+	工具->设置->chrome安装地址配置
+		C:/Program Files (x86)/Google/Chrome/Application/chrome.exe
+
+2.想要运行成小程序项目
+HubilderX配置
+	工具->设置->小程序开发者工具配置
+		F:/devtool/微信web开发者工具
+
+小程序开发者工具内配置
+	设置->安全设置->开启服务端口

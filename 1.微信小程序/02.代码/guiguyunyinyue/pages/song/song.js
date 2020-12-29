@@ -1,5 +1,6 @@
 // pages/song/song.js
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 import ajax from '../../utils/ajax.js';
 let appInstance = getApp();
 Page({
@@ -11,7 +12,10 @@ Page({
     songObj:{},
     songId:null,
     musicUrl:"",
-    isPlay:false
+    isPlay:false,
+    currentWidth:0,
+    currentTime:"00:00",
+    durationTime:"--:--"
   },
 
   switchType(event) {
@@ -29,19 +33,14 @@ Page({
 
     if (!this.data.musicUrl) {
       //当用户点击播放按钮时候,自动请求音频url
-      let urlInfo = await ajax('/song/url', {
-        id: this.data.songId
-      })
-      this.setData({
-        musicUrl: urlInfo.data[0].url
-      })
+      await this.getMusicUrl();
     }
 
     //获取全局唯一的背景音频管理器
-    let backgroundAudioManager = wx.getBackgroundAudioManager();
+    // let backgroundAudioManager = wx.getBackgroundAudioManager();
 
     if(this.data.isPlay){
-      backgroundAudioManager.pause();
+      this.backgroundAudioManager.pause();
       this.setData({
         isPlay: false
       })
@@ -50,8 +49,8 @@ Page({
       // appInstance.globalData.audioId = this.data.songId;
     } else {
       //想让背景音频自动播放,给他添加一个新的src属性
-      backgroundAudioManager.src = this.data.musicUrl;
-      backgroundAudioManager.title = this.data.songObj.name;
+      this.backgroundAudioManager.src = this.data.musicUrl;
+      this.backgroundAudioManager.title = this.data.songObj.name;
       this.setData({
         isPlay: true
       })
@@ -70,12 +69,52 @@ Page({
     let songObj = songData.songs[0];
     this.setData({
       songObj,
-      songId
+      songId,
+      durationTime: moment(songObj.dt).format('mm:ss')
     })
 
     wx.setNavigationBarTitle({
       title: songObj.name
     });
+  },
+
+  //  用于请求当前歌曲url
+  async getMusicUrl(){
+    let urlInfo = await ajax('/song/url', {
+      id: this.data.songId
+    })
+    this.setData({
+      musicUrl: urlInfo.data[0].url
+    })
+  },
+
+  //  用于绑定背景音频的监听
+  addEvent(){
+    this.backgroundAudioManager.onPlay(()=>{
+      // console.log('onPlay')
+      this.setData({
+        isPlay: true
+      })
+      appInstance.globalData.isPlay = true;
+    })
+
+    this.backgroundAudioManager.onPause(() => {
+      // console.log('onPause')
+      this.setData({
+        isPlay:false
+      })
+      appInstance.globalData.isPlay = false;
+    })
+
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      let currentTime = this.backgroundAudioManager.currentTime;
+      let duration = this.backgroundAudioManager.duration;
+      let currentWidth = currentTime / duration * 100;
+      this.setData({
+        currentWidth,
+        currentTime: moment(currentTime * 1000).format("mm:ss")
+      })
+    })
   },
 
   /**
@@ -113,15 +152,32 @@ Page({
       })
     }
 
-    PubSub.subscribe("changeId",(msg,data)=>{
-      console.log('changeId', data)
+    PubSub.subscribe("changeId",async (msg,data)=>{
+      // console.log('changeId', data)
       this.setData({
         songId: data
       })
 
       this.getMusicDetail(data);
-
+      await this.getMusicUrl();
+      this.backgroundAudioManager.src = this.data.musicUrl;
+      this.backgroundAudioManager.title = this.data.songObj.name;
     })
+    this.backgroundAudioManager = wx.getBackgroundAudioManager();
+    this.addEvent();
+
+    // setInterval(()=>{
+    //   let backgroundAudioManager = wx.getBackgroundAudioManager();
+    //   let currentTime = backgroundAudioManager.currentTime;
+    //   let duration = backgroundAudioManager.duration;
+    //   let currentWidth = currentTime/duration *100;
+    //   console.log(currentTime)
+    //   this.setData({
+    //     currentWidth,
+    //     currentTime: moment(currentTime*1000).format("mm:ss")
+    //   })
+    //   // console.log(currentTime)
+    // },200)
 
 
   },

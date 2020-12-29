@@ -136,3 +136,33 @@
   border-radius: 50%;
   background:white;
 }
+
+
+.barContainer{
+  display:flex;
+  align-items: center;
+}
+
+.barContainer .durationBar{
+  width:450rpx;
+  height:4rpx;
+  background: rgba(0, 0, 0, 0.4);
+  margin:0 20rpx;
+}
+
+.barContainer .durationBar .currentBar{
+  position: relative;
+  width:20%;
+  height:4rpx;
+  background: red;
+}
+
+.barContainer .durationBar .currentBar .box{
+  position: absolute;
+  right:-6rpx;
+  top:-4rpx;
+  width:12rpx;
+  height:12rpx;
+  background: white;
+  border-radius: 50%;
+}

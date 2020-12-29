@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/recommendSong/recommendSong",
     "pages/index/index",
     "pages/video/video",
     "pages/personal/personal",
-    "pages/login/login",
-    "pages/song/song"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,6 +34,25 @@
         "selectedIconPath": "/static/images/tabs/tab-my-current.png"
       }
     ]
+  },
+  "subpackages":[
+    {
+      "root":"songs",
+      "name":"haha",
+      "pages":[
+        "pages/song/song",
+        "pages/recommendSong/recommendSong"
+      ],
+      "independent":true
+    }
+  ],
+  "preloadRule":{
+    "pages/index/index":{
+      "network":"wifi",
+      "packages":[
+        "haha"
+      ]
+    }
   },
   "requiredBackgroundModes":["audio"],
   "style": "v2",

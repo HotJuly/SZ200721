@@ -1,7 +1,7 @@
 // pages/song/song.js
 import PubSub from 'pubsub-js'
 import moment from 'moment'
-import ajax from '../../utils/ajax.js';
+import ajax from '../../../utils/ajax.js';
 let appInstance = getApp();
 Page({
 
@@ -14,8 +14,8 @@ Page({
     musicUrl:"",
     isPlay:false,
     currentWidth:0,
-    currentTime:"00:00",
-    durationTime:"--:--"
+    currentTime:0,
+    durationTime:0
   },
 
   switchType(event) {
@@ -51,6 +51,7 @@ Page({
       //想让背景音频自动播放,给他添加一个新的src属性
       this.backgroundAudioManager.src = this.data.musicUrl;
       this.backgroundAudioManager.title = this.data.songObj.name;
+      this.backgroundAudioManager.startTime = 227;
       this.setData({
         isPlay: true
       })
@@ -70,7 +71,8 @@ Page({
     this.setData({
       songObj,
       songId,
-      durationTime: moment(songObj.dt).format('mm:ss')
+      // durationTime: moment(songObj.dt).format('mm:ss')
+      durationTime: songObj.dt
     })
 
     wx.setNavigationBarTitle({
@@ -112,8 +114,13 @@ Page({
       let currentWidth = currentTime / duration * 100;
       this.setData({
         currentWidth,
-        currentTime: moment(currentTime * 1000).format("mm:ss")
+        currentTime: currentTime
       })
+    })
+
+    this.backgroundAudioManager.onEnded(()=>{
+      // console.log('onEnded')
+      PubSub.publish('switchType', "next")
     })
   },
 

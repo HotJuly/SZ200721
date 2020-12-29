@@ -8,7 +8,7 @@ Page({
   },
   toRecommendSong(){
     wx.navigateTo({
-      url: '/pages/recommendSong/recommendSong'
+      url: '/songs/pages/recommendSong/recommendSong'
     })
   },
   onLoad(){

@@ -1,0 +1,30 @@
+// wxs文件内部,只能写ES5语法
+function filter(time,type){
+  // console.log('filter', time)
+
+  //经过这步,可以得到向下取整的秒数
+  if (type === "ms") {
+    time = Math.floor(time / 1000);
+  }
+
+  if (type === "s") {
+    time = Math.floor(time);
+  }
+
+  //将秒数/60,并向下取整,得到分钟数
+  var min = Math.floor(time/60);
+  var sec = time % 60;
+
+  if(min<10){
+    min = "0" + min;
+  }
+  if (sec < 10) {
+    sec = "0" + sec;
+  }
+
+  return min + ":" + sec
+}
+
+module.exports= {
+  filter: filter
+}

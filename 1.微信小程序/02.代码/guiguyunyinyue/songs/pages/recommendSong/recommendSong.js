@@ -1,6 +1,6 @@
 // pages/recommendSong/recommendSong.js
 import PubSub from 'pubsub-js'
-import ajax from '../../utils/ajax.js'
+import ajax from '../../../utils/ajax.js'
 Page({
 
   /**
@@ -29,7 +29,7 @@ Page({
       currentIndex:index
     })
     wx.navigateTo({
-      url: '/pages/song/song?songId=' + songid
+      url: '/songs/pages/song/song?songId=' + songid
     })
   },
 

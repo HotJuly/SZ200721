@@ -1,0 +1,5 @@
+1.在style标签中声明需要使用css预处理器
+	<style lang="stylus">
+
+2.安装插件(uniapp中不需要去下载stylus和stylus-loader的依赖)
+	工具->插件安装->找到对应预处理器的编译工具,安装即可

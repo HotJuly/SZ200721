@@ -1,0 +1,7 @@
+
+uniapp				小程序
+
+pages.json(pages->object[ ])		app.json(pages->string[ ])+所有页面的json配置		内部拥有pages属性,用于注册路由
+mainfest.json			project.config.json					项目的说明书,以及一些前置配置(注意:一定要传入微信小程序设置->appid)
+main.js+App.vue			app.js+app.wxss					注册小程序,并书写公共样式
+index.vue				index.wxml+index.wxss+indexjs			写入创建页面

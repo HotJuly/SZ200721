@@ -4,11 +4,12 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false
+		"urlCheck": false,
+		"es6": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
-	"appid": "touristappid",
+	"appid": "wxe5931a68ea66cece",
 	"projectname": "gulishop",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

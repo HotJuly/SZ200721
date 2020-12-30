@@ -1,8 +1,11 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="indexContainer">
+		<view class="header">
+			<image class="logo" src="../../static/images/logo.png"></image>
+			<view class="searchContainer">
+				<input class="seach" type="text" value="" />
+			</view>
+			<button class="nickname">七月</button>
 		</view>
 	</view>
 </template>
@@ -23,30 +26,23 @@
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="stylus">
+	.indexContainer
+		.header
+			display flex
+			.logo
+				width 140upx
+				height 40upx
+				flex-shrink 0
+				margin 0 20upx
+			.searchContainer
+				background #ededed
+				width 100%
+			.nickname
+				width 144upx
+				height 60upx
+				font-size 24upx
+				color red
+				flex-shrink 0
+				margin 0 20upx
 </style>

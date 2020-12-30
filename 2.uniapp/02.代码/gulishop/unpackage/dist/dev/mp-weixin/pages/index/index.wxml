@@ -1,1 +1,1 @@
-<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title}}</text></view></view>
+<view class="indexContainer"><view class="header"><image class="logo" src="../../static/images/logo.png"></image><view class="searchContainer"><input class="seach" type="text" value=""/></view><button class="nickname">七月</button></view></view>

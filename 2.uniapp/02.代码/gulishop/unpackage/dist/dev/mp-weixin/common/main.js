@@ -13,11 +13,29 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));function 
 
 _vue.default.config.productionTip = false;
 
+//mpType -> mp mini program	type 类型声明
+//通知uniapp,当前的App组件代表整个小程序
 _App.default.mpType = 'app';
 
+//创建vue实例,相当于app.js中的App(),注册小程序
 var app = new _vue.default(_objectSpread({},
 _App.default));
 
+
+
+// const app = App({
+//     // ...App
+
+// 	onLaunch: function() {
+// 		console.log('App Launch')
+// 	},
+// 	onShow: function() {
+// 		console.log('App Show')
+// 	},
+// 	onHide: function() {
+// 		console.log('App Hide')
+// 	}
+// })
 createApp(app).$mount();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))
 

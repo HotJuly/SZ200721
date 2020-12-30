@@ -1,0 +1,5 @@
+.recommendContainer .bannerSwiper .swiper-item .bannerImg {
+  width: 100%;
+  height: 350rpx;
+}
+

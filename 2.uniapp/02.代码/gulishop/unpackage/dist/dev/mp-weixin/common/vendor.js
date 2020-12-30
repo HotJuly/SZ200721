@@ -9328,10 +9328,30 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;function _default(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "GET";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 29));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/*
+                                                                                                                                                                                                                                                                 	根据当前环境进行基础路径配置:
+                                                                                                                                                                                                                                                                 		1.如果是h5端,使用config.h5Host
+                                                                                                                                                                                                                                                                 		2.如果是小程序端,使用config.mpHost
+                                                                                                                                                                                                                                                                 	
+                                                                                                                                                                                                                                                                 	使用uni.getSystemInfoSync().platform区分当前环境
+                                                                                                                                                                                                                                                                 		1.如果值是ios,说明当前在h5端
+                                                                                                                                                                                                                                                                 		2.如果值是devtools,说明当前在小程序端
+                                                                                                                                                                                                                                                                 */
+var baseUrl;
+var devtools = uni.getSystemInfoSync().platform;
+if (devtools === "ios") {
+  baseUrl = _config.default.h5Host;
+} else if (devtools === "devtools") {
+  baseUrl = _config.default.mpHost;
+}
+
+// console.log(uni.getSystemInfoSync());
+
+function _default(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "GET";
   return new Promise(function (resolve) {
     uni.request({
-      url: url,
+      url: baseUrl + url,
       data: data,
       method: method,
       success: function success(res) {
@@ -9343,6 +9363,23 @@ if (hadRuntime) {
   });
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */
+/*!***************************************************************************!*\
+  !*** C:/Users/CHH/Desktop/200721/2.uniapp/02.代码/gulishop/utils/config.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  mpHost: "http://localhost:3000",
+  h5Host: "/api" };exports.default = _default;
 
 /***/ })
 ]]);

@@ -1,5 +1,5 @@
 <template>
-	<view class="indexContainer">
+	<view id="indexContainer">
 		<!-- 头部搜索区域 -->
 		<view class="header">
 			<image class="logo" src="../../static/images/logo.png"></image>
@@ -12,22 +12,27 @@
 		
 		<!-- 导航条区域 -->
 		<scroll-view class="navScroll" enable-flex scroll-x v-if="indexData.kingKongModule">
-			<view class="navItem active">
+			<view class="navItem " :class="currentIndex===-1?'active':''">
 				推荐
 			</view>
-			<view class="navItem" v-for="item in indexData.kingKongModule.kingKongList" :key="item.L1Id">
+			<view class="navItem" :class="currentIndex===index?'active':''" v-for="(item,index) in indexData.kingKongModule.kingKongList" :key="item.L1Id">
 				{{item.text}}
 			</view>
 		</scroll-view>
+		
+		<!-- 内容区域 -->
+		<Recommend />
 	</view>
 </template>
 
 <script>
-	import ajax from '../../utils/ajax.js'
+	import ajax from '../../utils/ajax.js';
+	import Recommend from '../../components/Recommend/Recommend.vue';
 	export default {
 		data() {
 			return {
-				indexData:{}
+				indexData:{},
+				currentIndex:-1
 			}
 		},
 		/*
@@ -48,18 +53,26 @@
 		// },
 		async mounted(){
 			// console.log('mounted')
-			let indexData = await ajax('/api/getIndexData');
+			
+			let indexData = await ajax('/getIndexData');
+			//专门用于小程序请求
+			// let indexData = await ajax('http://localhost:3000/getIndexData');
+			//专门用于h5端请求
+			// let indexData = await ajax('/api/getIndexData');
 			this.indexData = indexData;
 			// console.log('indexData',indexData)
 		},
 		methods: {
 
+		},
+		components:{
+			Recommend
 		}
 	}
 </script>
 
 <style lang="stylus">
-	.indexContainer
+	#indexContainer
 		.header
 			display flex
 			align-items center

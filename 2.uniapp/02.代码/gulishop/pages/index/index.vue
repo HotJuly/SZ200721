@@ -11,7 +11,7 @@
 		</view>
 		
 		<!-- 导航条区域 -->
-		<scroll-view class="navScroll" enable-flex scroll-x>
+		<scroll-view class="navScroll" enable-flex scroll-x v-if="indexData.kingKongModule">
 			<view class="navItem active">
 				推荐
 			</view>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+	import ajax from '../../utils/ajax.js'
 	export default {
 		data() {
 			return {
@@ -45,15 +46,11 @@
 		// onLoad() {
 		// 	console.log('onLoad')
 		// },
-		mounted(){
+		async mounted(){
 			// console.log('mounted')
-			uni.request({
-				url:"http://localhost:3000/getIndexData",
-				success:(res)=>{
-					// console.log(res.data);
-					this.indexData = res.data;
-				}
-			})
+			let indexData = await ajax('/api/getIndexData');
+			this.indexData = indexData;
+			// console.log('indexData',indexData)
 		},
 		methods: {
 

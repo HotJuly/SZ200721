@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送请求</button>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script>
+        /*
+            发送请求的目的:从服务器获取数据
+        */
+       function getData(res){
+        console.log(res)
+       }
+    //    getData(123);
+        btn.onclick=function(){
+            axios.get('http://localhost:3000/test2');
+
+            //jsonp实现原理
+            // let script = document.createElement('script');
+            // script.src="http://localhost:3000/test1?callback=getData";
+            // document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

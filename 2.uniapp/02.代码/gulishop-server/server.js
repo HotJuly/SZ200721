@@ -45,9 +45,32 @@ router.get('/test',function(ctx,next){
     ctx.body="哈哈"
 })
 
+//用于测试jsonp
+router.get('/test1',function(ctx,next){
+	let data = 5666666;
+    console.log("/test1 get success",ctx.query)
+	// `getData(5666666)`
+    ctx.body=`getData(${data})`
+})
+
+
+//用于测试cors
+router.get('/test2',function(ctx,next){
+	ctx.set('Access-Control-Allow-Origin',"*");
+	ctx.set('Access-Control-Allow-Methods',"POST,GET,DELETE,PUT");
+	ctx.set('Access-Control-Allow-Headers',"Content-type");
+	
+	
+	let data = "cors返回的数据";
+    console.log("/test1 get success")
+	// `getData(5666666)`
+    ctx.body=data
+})
+
 //用于返回首页数据
 let indexData = require('./datas/index.json');
 router.get('/getIndexData',function(ctx,next){
+	console.log('getIndexData')
     ctx.body=indexData
 })
 

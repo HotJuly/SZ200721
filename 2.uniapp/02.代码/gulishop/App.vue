@@ -12,6 +12,7 @@
 	}
 </script>
 
-<style>
+<style lang="stylus">
+	@import url(/static/iconfont/iconfont.styl)
 	/*每个页面公共css */
 </style>

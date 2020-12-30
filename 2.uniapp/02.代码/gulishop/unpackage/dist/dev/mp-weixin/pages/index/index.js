@@ -131,7 +131,19 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -147,13 +159,37 @@ var _default =
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      indexData: {} };
 
   },
-  onLoad: function onLoad() {
+  /*
+     	1.在哪发
+     		Vue -> mounted和created
+     		小程序->onLoad
+     		uniapp中,可以使用小程序和Vue的生命周期
+     		uniapp兼容:1.小程序的组件 2.小程序的生命周期
+     		无论是uniapp还是mpvue(美团推出的小程序框架),都推荐使用Vue的生命周期,尽量少用小程序的生命周期
+     	2.怎么发
+     		小程序->wx.request
+     		uniapp->uni.request
+     	3.往哪发
+     		往自家服务器发送
+     */
+  // onLoad() {
+  // 	console.log('onLoad')
+  // },
+  mounted: function mounted() {var _this = this;
+    // console.log('mounted')
+    uni.request({
+      url: "http://localhost:3000/getIndexData",
+      success: function success(res) {
+        // console.log(res.data);
+        _this.indexData = res.data;
+      } });
 
   },
   methods: {} };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 21 */

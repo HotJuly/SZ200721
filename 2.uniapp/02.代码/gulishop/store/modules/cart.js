@@ -2,6 +2,7 @@ import Vue from 'vue'
 const state = {
 	cartList:[
 		{
+			"selected":true,
 			"count":1,
 		    "promId": 0,
 		    "showPoints": false,
@@ -78,6 +79,7 @@ const state = {
 		    "itemSizeTableFlag": false
 		},
 		{
+			"selected":false,
 			"count":3,
 		    "promId": 0,
 		    "showPoints": false,
@@ -201,6 +203,22 @@ const mutations = {
 			state.cartList.push(good1);
 		}
 		console.log("cartList",cartList)
+	},
+	changeSelected(state,{selected,index}){
+		console.log('changeSelected',selected,index)
+		/*
+			将cartList中,对应的商品选中状态切换成selected
+		*/
+	   // let shopItem = cartList.find((shopItem)=>{
+	   // 	return shopItem.id===good.id
+	   // })
+	   
+	   state.cartList[index].selected=selected
+	},
+	changeSelectedAll(state,selected){
+		state.cartList.forEach((shopItem)=>{
+			shopItem.selected=selected
+		})
 	}
 }
 
@@ -209,7 +227,21 @@ const actions = {
 }
 
 const getters = {
-	
+	isSelectedAll(state){
+		/*
+			1.如果购物车中所有的商品都选中了(true),全选按钮就应该是选中状态(true)
+			2.如果购物车中有一个及以上商品未选中(false),全选按钮就应该是未选中状态(false)
+				every和some
+					every->回调函数的返回值全部为true,every的返回值就是true,如果有一个false,就返回false
+					some->回调函数的返回值有一个以上为true,some的返回值就是true,如果所有的都是false,就返回false
+			3.如果购物车中没有商品,全选按钮就应该是未选中状态
+			4.返回值类型:布尔值
+		*/
+	   if(!state.cartList.length)return false;
+	   let result = state.cartList.every(shopItem=>shopItem.selected)
+	   // let result = state.cartList.every(shopItem=>{return shopItem.selected})
+	   return result;
+	}
 }
 
 export default {

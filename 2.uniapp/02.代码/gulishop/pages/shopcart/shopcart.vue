@@ -20,7 +20,7 @@
 		<block v-else>
 			<view class="cartList">
 				<view class="cartItem" v-for="(shopItem,index) in cartList" :key="shopItem.id">
-					<text class='iconfont icon-xuanzhong selected'></text>
+					<text class='iconfont icon-xuanzhong ' :class="shopItem.selected?'selected':''" @click="changeSelected(!shopItem.selected,index)"></text>
 					<view class="shopItem">
 						<image class="shopImg" :src="shopItem.listPicUrl" mode=""></image>
 						<view class="shopInfo">
@@ -39,7 +39,7 @@
 			</view>
 			<!-- 底部下单 -->
 			<view class="cartFooter">
-				<text class='iconfont icon-xuanzhong selected'></text>
+				<text class='iconfont icon-xuanzhong' :class="isSelectedAll?'selected':''" @click="changeSelectedAll(!isSelectedAll)"></text>
 				<text class="allSelected">已选 3</text>
 				<view class="right">
 					<text class="totalPrice">合计: ￥1000</text>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import {mapState} from 'vuex';
+	import {mapState,mapGetters} from 'vuex';
 	export default {
 		data() {
 			return {
@@ -70,12 +70,19 @@
 			changCount(flag,index){
 				// console.log('flag',flag,index)
 				this.$store.commit('changeShopItemCount',{flag,index})
+			},
+			changeSelected(selected,index){
+				this.$store.commit('changeSelected',{selected,index})
+			},
+			changeSelectedAll(selected){
+				this.$store.commit('changeSelectedAll',selected)
 			}
 		},
 		computed:{
 			...mapState({
 				cartList:state=>state.cart.cartList
-			})
+			}),
+			...mapGetters(['isSelectedAll'])
 		}
 	}
 </script>

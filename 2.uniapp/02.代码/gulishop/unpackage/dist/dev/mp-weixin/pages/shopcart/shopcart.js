@@ -221,11 +221,19 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
     changCount: function changCount(flag, index) {
       // console.log('flag',flag,index)
       this.$store.commit('changeShopItemCount', { flag: flag, index: index });
+    },
+    changeSelected: function changeSelected(selected, index) {
+      this.$store.commit('changeSelected', { selected: selected, index: index });
+    },
+    changeSelectedAll: function changeSelectedAll(selected) {
+      this.$store.commit('changeSelectedAll', selected);
     } },
 
   computed: _objectSpread({},
   (0, _vuex.mapState)({
-    cartList: function cartList(state) {return state.cart.cartList;} })) };exports.default = _default;
+    cartList: function cartList(state) {return state.cart.cartList;} }),
+
+  (0, _vuex.mapGetters)(['isSelectedAll'])) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

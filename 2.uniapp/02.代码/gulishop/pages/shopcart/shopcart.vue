@@ -19,7 +19,7 @@
 		<!-- 登陆之后的购物车 -->
 		<block v-else>
 			<view class="cartList">
-				<view class="cartItem" v-for="shopItem in cartList" :key="shopItem.id">
+				<view class="cartItem" v-for="(shopItem,index) in cartList" :key="shopItem.id">
 					<text class='iconfont icon-xuanzhong selected'></text>
 					<view class="shopItem">
 						<image class="shopImg" :src="shopItem.listPicUrl" mode=""></image>
@@ -30,9 +30,9 @@
 					</view>
 					<!-- 控制数量 -->
 					<view class="countCtrl">
-						<text class="add"> + </text>
+						<text class="add" @click="changCount(true,index)"> + </text>
 						<text class="count"> {{shopItem.count}} </text>
-						<text class="del"> - </text>
+						<text class="del" @click="changCount(false,index)"> - </text>
 					</view>
 				</view>
 				
@@ -64,7 +64,13 @@
 					// console.log(res)
 					this.userInfo = res.userInfo
 				}
-			})
+			});
+		},
+		methods:{
+			changCount(flag,index){
+				// console.log('flag',flag,index)
+				this.$store.commit('changeShopItemCount',{flag,index})
+			}
 		},
 		computed:{
 			...mapState({

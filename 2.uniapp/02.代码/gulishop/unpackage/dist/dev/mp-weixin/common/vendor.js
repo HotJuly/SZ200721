@@ -1505,7 +1505,8 @@ uni$1;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var state = {
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var state = {
   cartList: [
   {
     "count": 1,
@@ -1662,8 +1663,52 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var mutations = {};
+var mutations = {
+  changeShopItemCount: function changeShopItemCount(state, _ref) {var flag = _ref.flag,index = _ref.index;
+    /*
+                                                                                                           	需求:
+                                                                                                           		1.点击+/-号时,修改对应商品的数量
+                                                                                                           		2.当数量小于1时,自动删除该商品
+                                                                                                           */
+    console.log('changeShopItemCount', flag, index);
+    var shopItem = state.cartList[index];
+    if (flag) {
+      shopItem.count++;
+    } else {
+      if (shopItem.count === 1) {
+        // console.log('0000')
+        // 响应式数据无法监视数组内的元素变化,所以页面不会重新渲染
+        //	API重写:push,pop,splice
+        state.cartList.splice(index, 1);
+        // console.log('state.cartList',state.cartList)
+      } else {
+        shopItem.count--;
+      }
+    }
+  },
+  addShopItem: function addShopItem(state, good) {
+    /*
+                                                  	1.如果购物车中没有这个商品,添加到购物车中
+                                                  	2.如果有这个商品,数量+1
+                                                  */
+    // console.log('添加购物车成功')
+    var cartList = state.cartList;
 
+    var shopItem = cartList.find(function (shopItem) {
+      return shopItem.id === good.id;
+    });
+    if (shopItem) {
+      // console.log('+1')
+      shopItem.count++;
+    } else {
+      // console.log('=1')
+      // good.count=1;
+      // Vue.set(good,'count',1)
+      var good1 = _vue.default.observable(_objectSpread({}, good, { count: 1 }));
+      state.cartList.push(good1);
+    }
+    console.log("cartList", cartList);
+  } };
 
 
 var actions = {};

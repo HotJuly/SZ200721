@@ -64,7 +64,11 @@ var _ajax = _interopRequireDefault(__webpack_require__(/*! ../../utils/ajax.js *
 
               this.goodDetail = goodDetail;
               // console.log('result',result)
-            case 5:case "end":return _context.stop();}}}, _callee, this);}));function mounted() {return _mounted.apply(this, arguments);}return mounted;}() };exports.default = _default;
+            case 5:case "end":return _context.stop();}}}, _callee, this);}));function mounted() {return _mounted.apply(this, arguments);}return mounted;}(),
+  methods: {
+    addShopItem: function addShopItem() {
+      this.$store.commit('addShopItem', this.goodDetail);
+    } } };exports.default = _default;
 
 /***/ }),
 

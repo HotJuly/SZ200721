@@ -70,8 +70,37 @@ router.get('/test2',function(ctx,next){
 //用于返回首页数据
 let indexData = require('./datas/index.json');
 router.get('/getIndexData',function(ctx,next){
-	console.log('getIndexData')
+	// console.log('getIndexData')
     ctx.body=indexData
+})
+
+//用于返回首页catelist数据
+let indexCateListData = require('./datas/indexCateList.json');
+router.get('/getindexCateList',function(ctx,next){
+	// console.log('getIndexData')
+    ctx.body={
+		data:indexCateListData
+	}
+})
+
+//用于返回商品详细数据
+let goods = require('./datas/goods.json');
+router.get('/getGoodDetail',function(ctx,next){
+	/*
+		1.获取前端传来的商品id
+			query传参 ctx.query
+		2.通过id查找到对应的商品
+		3.将商品详细信息返回
+	*/
+	let {goodId} =ctx.query;
+	console.log('getGoodDetail',goodId)
+	
+	let good = goods.find((good)=>{
+		// goods内部的id是数字类型,通过url传递过来的goodid是字符串类型
+		return good.id === goodId*1
+	})
+	
+    ctx.body=good
 })
 
 

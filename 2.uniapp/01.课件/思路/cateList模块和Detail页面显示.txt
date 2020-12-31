@@ -1,0 +1,12 @@
+一.catelist
+1.catelist和shoplist组件引入项目中
+2.catelist组件依赖于导航条的下标currentIndex,通过props传入(navIndex)
+3.完整cateList的接口
+
+二.shoplist
+1.将request修改为ajax
+
+三.detail
+1.先获取路由传参得到的goodId
+2.完整detail的接口(需要将goodId传递给Node服务器)
+3.发送请求获取商品详细信息

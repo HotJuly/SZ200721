@@ -1,0 +1,23 @@
+.cateListContainer swiper {
+  width: 100%;
+  height: 370rpx;
+}
+.cateListContainer swiper image {
+  width: 100%;
+  height: 100%;
+}
+.cateListContainer .title {
+  display: block;
+  text-align: center;
+  font-size: 34rpx;
+  color: #333;
+  line-height: 70rpx;
+}
+.cateListContainer .desc {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+

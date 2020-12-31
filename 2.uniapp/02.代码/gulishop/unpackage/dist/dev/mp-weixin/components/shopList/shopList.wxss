@@ -1,0 +1,41 @@
+.listContainer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+/* 解决最后一行只有一个元素的时候不能靠左布局 */
+}
+.listContainer:after {
+  content: '';
+  width: 345rpx;
+  height: 0;
+}
+.listContainer .listItem {
+  width: 345rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.listContainer .listItem image {
+  width: 345rpx;
+  height: 345rpx;
+}
+.listContainer .listItem ._p {
+  white-space: pre-wrap;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  text-align: left;
+}
+

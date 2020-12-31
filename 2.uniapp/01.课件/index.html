@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --global-color: red;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1,
+        .box2 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid;
+        }
+
+        .box1 {
+            background-color: var(--global-color);
+        }
+
+        .box2 {
+            color: var(--global-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <button id="btn">自定义主题色</button>
+    <script>
+        btn.onclick=function(){
+            //找到html标签
+            var htmlNode = document.documentElement;
+
+            //将html标签(根标签)的CSS变量(--global-color)的值修改为red
+            htmlNode.style.setProperty("--global-color", "blue");
+        }
+    </script>
+</body>
+
+</html>

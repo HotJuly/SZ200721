@@ -1,0 +1,60 @@
+Vuex
+理解
+	1.他是Vue的扩展库(插件库)
+	2.管理多组件公共状态
+
+核心理念
+1.store	new Vuex.Store()
+用来管理state,mutation,action,getter,并向外提供一些API:dispatch,commit
+
+2.state	state={}
+用来存储多组件之间的公共数据
+
+3.action
+数据类型:函数
+间接修改state的数据,在内部调用mutation去修改state
+面试题一:action能不能直接修改state(仅从技术)
+答案:可以
+面试题二:为什么action不推荐直接修改state
+答案:	1.官方语法规范
+	2.devTool	只能记录mutation,如果使用action修改state,那调试工具无法再去追踪state的变化
+
+4.mutation
+数据类型:函数
+直接修改state的数据
+面试题二:为什么mutation不能是一个异步函数
+答案:	1.官方语法规范
+	2.devTool	只能记录mutation,如果当前mutation是异步函数,那调试工具无法再去追踪state的变化
+
+面试题三:为什么mutation的名称推荐定义为常量
+答案:	1.官方语法规范
+	2.为了多人协同开发,避免不必要的错误,防止mutation重名
+
+5.getter
+数据类型:函数
+根据state中的数据,计算出一个新值,相当于Vue组件中的计算数据computed
+
+watch和computed的区别
+基本结构
+watch->没有返回值
+computed->有返回值
+
+功能
+computed->你想使用一个数据,但是你现在手上没有,但是你知道这个数据可以通过data或者props进行计算得到(经过一定的代码处理)
+watch->监视某个数据(data或者props)的变化,如果他发生变化,执行某个函数(事件监听)
+
+性能
+computed>watch	computed具有缓存,如果他依赖的属性没有发生变化,他不会重新计算
+
+应用场景
+
+
+
+6.dispatch
+分发(触发)action
+
+7.commit
+用来触发mutation
+面试题四:mutation一定要用commit触发吗?
+答案:一定要,不然的话无法接收到固定的实参
+

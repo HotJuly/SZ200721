@@ -21,17 +21,20 @@
 		</scroll-view>
 		
 		<!-- 内容区域 -->
-		<Recommend />
+		<scroll-view class="contentScroll" scroll-y="true" >
+			<Recommend />
+		</scroll-view>
 	</view>
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	import ajax from '../../utils/ajax.js';
 	import Recommend from '../../components/Recommend/Recommend.vue';
 	export default {
 		data() {
 			return {
-				indexData:{},
+				// indexData:{},
 				currentIndex:-1
 			}
 		},
@@ -53,20 +56,30 @@
 		// },
 		async mounted(){
 			// console.log('mounted')
+			// console.log(this.$store.state.home.initData)
+		
 			
-			let indexData = await ajax('/getIndexData');
+			// let indexData = await ajax('/getIndexData');
 			//专门用于小程序请求
 			// let indexData = await ajax('http://localhost:3000/getIndexData');
 			//专门用于h5端请求
 			// let indexData = await ajax('/api/getIndexData');
-			this.indexData = indexData;
+			// this.indexData = indexData;
 			// console.log('indexData',indexData)
+			
+			this.$store.dispatch('getIndexData')
 		},
 		methods: {
 
 		},
 		components:{
 			Recommend
+		},
+		computed:{
+			// ...mapState(["getIndexData"])
+			...mapState({
+				indexData:state=>state.home.indexData
+			})
 		}
 	}
 </script>
@@ -127,4 +140,11 @@
 					background red
 					left 0
 					bottom 2upx
+		.contentScroll
+			// 小程序端	导航栏和tabBar并不算在100vh中,所以以下算法即可
+			// h5端		导航栏和tabBar算在100vh,需要将他们一并减去
+			//height calc(100vh - header的高度 - navScroll的高度 - 导航栏的高度 - tabBar的高度)
+			//tabBar高度->--window-bottom 导航栏高度->--window-top
+			// 这两个属性在小程序端是0px,在h5端是有各自的数据,设置在html标签上
+			height calc(100vh - 100upx - 80upx - var(--window-bottom) - var(--window-top))
 </style>

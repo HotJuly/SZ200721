@@ -1,0 +1,13 @@
+1.安装全局的TypeScript(不安装没有tsc命令)
+
+2.生成ts-cli
+	1)创建package.json(npm init -y,注意包名不要重名)
+		下载多个包,参考课件
+		webpack->4.0
+		webpack-cli->3.0
+	2)创建tsconfig.js(tsc --init)
+	3)创建webpack.config.js(手动创建)
+		内容直接复制粘贴课件
+		注意:module.rules[0].include不用写
+	4)创建src文件夹,内部放置main.ts
+	5)创建public文件夹,内部放置index.html

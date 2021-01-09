@@ -83,7 +83,7 @@ function getLength(a: string|number){
     }
 }
 
-console.log(getLength(1),getLength("dsjhashdjkahskjda"))
+console.log(getLength(1),getLength("dsjhashdjkahskjda"));
 
 let d = 123;
-d=true;
+// d=true;

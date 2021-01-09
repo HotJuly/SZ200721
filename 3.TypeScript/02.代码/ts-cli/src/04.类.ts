@@ -120,6 +120,10 @@
 
 
 (function(){
+    interface IAnimal{
+        cry: ()=>void
+    }
+
     abstract class Animal {
 
         abstract cry ()

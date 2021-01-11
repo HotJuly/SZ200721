@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <h1 ref="msg">{{msg1111}}</h1>
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1 ref="msg">{{msg}}</h1>
+    <HelloWorld ref="hello" v-model="msg" value="222"/>
+    <!-- <HelloWorld :value="msg" @input="value=>msg=value"/> -->
   </div>
 </template>
 
@@ -13,30 +13,39 @@ export default {
   name: 'App',
   data(){
     return {
-      msg1111:"我是修改之前的数据"
+      msg1111:"我是修改之前的数据",
+      msg:"Welcome to Your Vue.js App"
     }
+  },
+  provide:{
+    aaa:"haha"
   },
   components: {
     HelloWorld
   },
   mounted(){
-    console.log(123)
-    this.msg1111="我是修改之后的数据";
+    // console.log(123)
+    // this.msg1111="我是修改之后的数据";
     // 更新data数据是同步的,但是视图更新是异步(实现原理:then->nextTick(updateDOM))
     // nextTick实现原理:then
     // nextTick??????
-    Promise.resolve().then(()=>{
-      console.log('then')
-    })
-    this.$nextTick(()=>{
-      console.log("nextTick1")
-    })
-    this.$nextTick(()=>{
-      console.log("nextTick2")
-    })
+    // Promise.resolve().then(()=>{
+    //   console.log('then')
+    // })
+    // this.$nextTick(()=>{
+    //   console.log("nextTick1")
+    // })
+    // this.$nextTick(()=>{
+    //   console.log("nextTick2")
+    // })
 
     // callbacks=[fun1,fun2,fun3,fun4]
     // .then()=>fun1()->fun2()->fun3
+
+
+    // console.log(this.$el)
+    // console.log(this.$children[0].ccc=333)
+    console.log(this.$refs.msg,this.$refs.hello)
   }
 }
 </script>

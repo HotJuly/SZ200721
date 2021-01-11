@@ -1,0 +1,18 @@
+1.props(主要用于父子组件之间传参)
+	父向子,传递数据即可
+	子向父
+		1)父向子,传递函数,this指向父组件
+		2)子组件调用该函数,传递实参即可
+
+2.Vue原型对象
+	Vue.prototype.$data=Vue.observable( object )
+
+3.provide/inject
+
+4.$parent可以获取到父组件实例对象
+   $children,数组,可以获取到所有直接子组件实例对象
+   $root,获取到根组件实例对象
+   $refs,ref添加在组件身上,可以获取到他的实例对象
+
+5.$attrs->用来收集当前组件没使用到的props
+  $listenenrs->用于收集当前组件实例绑定的所有事件

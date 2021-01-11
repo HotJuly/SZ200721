@@ -22,11 +22,21 @@ export default {
   mounted(){
     console.log(123)
     this.msg1111="我是修改之后的数据";
-    // 更新data数据是同步的,但是视图更新是异步(实现原理:then)
+    // 更新data数据是同步的,但是视图更新是异步(实现原理:then->nextTick(updateDOM))
     // nextTick实现原理:then
-    this.$nextTick(()=>{
-      console.log(this.msg1111,this.$refs.msg.innerText)
+    // nextTick??????
+    Promise.resolve().then(()=>{
+      console.log('then')
     })
+    this.$nextTick(()=>{
+      console.log("nextTick1")
+    })
+    this.$nextTick(()=>{
+      console.log("nextTick2")
+    })
+
+    // callbacks=[fun1,fun2,fun3,fun4]
+    // .then()=>fun1()->fun2()->fun3
   }
 }
 </script>

@@ -1,0 +1,32 @@
+1.什么是虚拟DOM
+数据类型:对象
+他的作用就是简化DOM的结构
+template:"<div class="wrap"><span>123</span></div>"
+let obj ={
+	tag:"div",
+	class:"wrap",
+	children:[
+		{
+			tag:"span",
+			class:"",
+			children:[],
+			text:"123"
+		}
+		]
+}
+
+2.虚拟DOM和真实DOM的区别
+真实DOM->页面上标签所对应(映射)的js对象->我们去操作这个js对象,dom.className="wrap"
+虚拟DOM->他也是在映射某个标签,但是操作他无法控制页面上标签的属性->Vue会通过document.createElement创建真实DOM
+let div=document.createElement(obj.tag);
+div.className=obj.class;
+children数组中有元素,递归创建真实DOM
+
+操作真实DOM很有可能导致页面进行重绘重排,性能极低
+操作虚拟DOM不会导致页面进行重绘重排,性能相当高
+
+真实DOM体量较大,无用属性太多	->占用内存较大
+虚拟DOM体量较小,无用属性较少->占用内存较小
+
+
+

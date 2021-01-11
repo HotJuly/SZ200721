@@ -1,0 +1,39 @@
+1.理解
+Vuex是Vue的一个扩展包
+用于集中管理多组件之间的共享数据
+进行多组件之间的通信
+
+
+2.核心概念
+1)store对象
+  用于管理state,mutation,action,getter等数据,并向外提供一些方法的对象
+
+2)state
+  用于存储共享数据
+
+3)mutation
+  类型:函数
+  作用:用于直接修改store中state数据,一般是将同步代码写入mutation
+  问题1:为什么mutation中不能放置异步代码?
+	1)官方语法规范
+	2)为了更好的使用Vue devTools,如果mutation中写异步代码,那记录mutation的触发就没有任何意义了
+  问题2:为什么非要将mutation的属性名定义为常量
+  答案:
+	1)官方建议的推荐的语法
+	2)防止多人开时候,出现mutation同名情况,导致不必要的错误发生
+
+4)action
+  类型:函数
+  作用:用于间接修改state的数据,一般是将异步代码写入action
+  问题1:action能否直接修改state(仅从技术上)
+  答案:能
+  问题2:为什么不用action直接修改state,非要使用mutation进行直接修改
+  答案:
+	1)官方语法规范
+	2)同样是为了更好的使用Vue devTools,因为开发者工具只会记录触发mutation,如果不适用mutation修改state,状态数据的修改将无法追踪
+
+5)getter
+  它相当于Vuex中的computed
+
+6)dispatch
+  用于分发action

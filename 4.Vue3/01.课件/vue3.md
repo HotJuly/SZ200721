@@ -337,7 +337,7 @@ Object.defineProperty(data, 'count', {
 
 - 核心: 
   - 通过Proxy(代理):  拦截对data任意属性的任意(13种)操作, 包括属性值的读写, 属性的添加, 属性的删除等...
-  - 通过 Reflect(反射):  动态对代理对象的相应属性进行特定的操作
+  - 通过 Reflect(反射):  动态对被代理对象的相应属性进行特定的操作
   - 文档:
     - https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
     - https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect

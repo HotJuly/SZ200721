@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const data = {
+            name:"小红",
+            age:19,
+            sex:"女"
+        }
+
+        // 生成代理对象
+        const proxyData = new Proxy(data,{
+            get(target,prop){
+                console.log('劫持get()')
+                return Reflect.get(target,prop)
+            },
+            set(target,propName,newValue){
+                console.log('劫持set()',target,propName,newValue)
+                // target[propName]=newValue;
+                Reflect.set(target,propName,newValue)
+            },
+            deleteProperty(target,propName){
+                Reflect.deleteProperty(target,propName)
+                console.log("劫持delete")
+            }
+        })
+
+        // console.log(proxyData.name)
+        // proxyData.name="小王"
+        proxyData.age=11111
+        proxyData.phone="7777777"
+        delete proxyData.name
+        console.log(proxyData,data)
+    </script>
+</body>
+</html>

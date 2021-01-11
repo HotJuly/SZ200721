@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     I'm Home
-    <h2>count: {{count}}</h2>
+    <h2 ref="count1111">count: {{count}}</h2>
     <div>msg:{{msg}}</div>
     <div>person:
       <p>name:{{person.name}}</p>
@@ -96,5 +96,8 @@ export default defineComponent({
       ...toRefsData
     }
   },
+  mounted(){
+    console.log(this.$refs.count1111)
+  }
 })
 </script>

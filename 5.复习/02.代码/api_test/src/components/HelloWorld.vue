@@ -27,7 +27,7 @@ export default {
   },
   methods:{
     handleInput(event){
-      console.log(event.target.value)
+      // console.log(event.target.value)
       // this.$emit('input123',event.target.value)
       this.$emit('update:value1',event.target.value)
     }
@@ -38,8 +38,8 @@ export default {
     this.$parent.msg="666"
     // console.log(this.$el)
     // console.log(c)
-    console.log('$attrs',this.$attrs)
-    console.log('$listeners',this.$listeners)
+    // console.log('$attrs',this.$attrs)
+    // console.log('$listeners',this.$listeners)
   }
 }
 </script>

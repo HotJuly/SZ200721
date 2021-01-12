@@ -68,12 +68,14 @@ Observer.prototype = {
         //     get: function() {
         //         if (Dep.target) {
         //             // 建立dep和watcher的关系
+        //              //dep实例对象被闭包保留下来了
         //             dep.depend();
         //         }
         //  
         //         return val;
         //     },
         //     set: function(newVal) {
+            //      newVal=123;
         //         if (newVal === val) {
         //             return;
         //         }
@@ -112,6 +114,7 @@ function Dep() {
 
 Dep.prototype = {
     addSub: function(sub) {
+        // this.subs.push(watcher);
         this.subs.push(sub);
     },
 

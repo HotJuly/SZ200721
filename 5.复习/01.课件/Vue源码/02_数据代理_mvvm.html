@@ -37,15 +37,20 @@
           3. 数据代理就是通过Object.defineProperty给实例对象
             添加data中属性，值通过get/set重新定义读和写方法
             get/set中实际上就是对_data中的数据（也就是原数据）进行操作
-          4. 此时我们就能通过实例对象直接操作data中的数据  
+          4. 此时我们就能通过实例对象直接操作data中的数据
       */
       const vm = new MVVM({
         el: "#app",
         data: {
           msg: "hello MVVM",
+          person:{
+            name:"xiaoming"
+          }
         },
         methods:{
           handleClick(){
+            this.msg=123
+            // this.msg(数据代理)=>this._data.msg()数据劫持=>
             console.log('click')
           }
         }

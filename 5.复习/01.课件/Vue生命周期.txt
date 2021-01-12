@@ -1,0 +1,22 @@
+生命周期分为三个阶段:初始化阶段,更新阶段,卸载阶段
+
+初始化阶段
+beforeCreate
+created
+beforeMount
+mounted
+
+更新阶段
+beforeUpdate
+updated
+
+卸载阶段
+beforeDestory
+destoryed
+
+keep-alive专用
+avtivated
+deavtivated
+
+用来捕获子孙组件出现的错误
+errorCaptured		=>	Vue.config.errorHandler(全局捕获错误)

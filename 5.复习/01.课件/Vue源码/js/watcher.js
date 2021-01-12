@@ -1,4 +1,11 @@
 function Watcher(vm, expOrFn, cb) {
+  // vm=>vm expOrFn=>"msg" cb=>function (value, oldValue) {
+    // updaterFn=>textUpdater
+    //   updaterFn && updaterFn(node, value, oldValue);
+    // }
+
+  //this=>watcher实例对象
+
   // 更新用户界面的函数
   this.cb = cb;
   this.vm = vm;
@@ -10,6 +17,16 @@ function Watcher(vm, expOrFn, cb) {
     this.getter = expOrFn;
   } else {
     this.getter = this.parseGetter(expOrFn.trim());
+    // this.getter = function getter(obj) {
+      // exps=>["msg"]  obj=>vm
+    //   for (var i = 0, len = exps.length; i < len; i++) {
+    //     if (!obj) return;
+    //     // 读取属性 --> 触发数据代理的get --> 触发数据劫持的get
+    //     obj = obj[exps[i]];
+    //      obj = vm["msg"] =>vm.msg(触发数据代理)=>vm._data.msg(触发数据劫持)
+    //   }
+    //   return obj;
+    // }
   }
 
   // 得到当前表达式的值，存在this.value(代表上一次的值)
@@ -25,8 +42,10 @@ Watcher.prototype = {
   run: function () {
     // 得到当前表达式的值，存在this.value(代表上一次的值)
     // 建立dep和watcher之间的关系（如果已经建立了，就不会了）
+    //读取到当前最新的data值
     var value = this.get();
     // 上一次表达式的值
+    //this.value是上一次的值
     var oldVal = this.value;
     if (value !== oldVal) {
       // 更新值
@@ -58,18 +77,23 @@ Watcher.prototype = {
       dep.addSub(this);
       // 在watcher中保存dep
       // 有什么用？ 防止dep重复保存watcher
+      // {"1":dep}
       this.depIds[dep.id] = dep;
     }
   },
   get: function () {
+    // this是watcher的实例对象
     // 将Dep.target赋值为当前watcher
     Dep.target = this;
+    // 经过这一步所有的dep和watcher都会互相关联
     var value = this.getter.call(this.vm, this.vm);
     Dep.target = null;
     return value;
   },
 
   parseGetter: function (exp) {
+    // exp=>msg
+    //\w=>a-zA-Z0-9_.$ 正在过滤特殊字符
     if (/[^\w.$]/.test(exp)) return;
     // exp person.name
     // exps ['person', 'name']

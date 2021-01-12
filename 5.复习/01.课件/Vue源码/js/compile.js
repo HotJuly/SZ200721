@@ -203,9 +203,9 @@ var compileUtil = {
 
     // 所有指令（除了事件指令）和插值语法都有watcher
     // 第三个参数是cb，更新用户界面方法
-    // new Watcher(vm, exp, function (value, oldValue) {
-    //   updaterFn && updaterFn(node, value, oldValue);
-    // });
+    new Watcher(vm, exp, function (value, oldValue) {
+      updaterFn && updaterFn(node, value, oldValue);
+    });
   },
 
   // 事件处理
@@ -240,6 +240,7 @@ var compileUtil = {
    * @param {*} exp 表达式
    */
   _getVMVal: function (vm, exp) {
+    // exp=>msg
     // val --> vm
     var val = vm;
     // exp --> person.name
@@ -253,6 +254,7 @@ var compileUtil = {
                     val[k] --> person['name'] --> val赋值jack
             */
       val = val[k];
+      // vm.msg =>(数据代理)  vm._data.msg  =>(数据劫持)
     });
     return val;
   },
@@ -273,7 +275,9 @@ var compileUtil = {
 
 var updater = {
   textUpdater: function (node, value) {
+    // textUpdater(文本节点,123,"hello MVVM")
     // 将节点的文本内容，赋值成表达式的值
+    // console.log("textUpdater",node, value)
     node.textContent = typeof value == "undefined" ? "" : value;
   },
 

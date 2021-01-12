@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1 ref="msg" v-pre>msg:{{msg}}</h1>
-    <h1 ref="msg" v-once @click="trigger">value:{{value}}</h1>
+    <h1 v-pre>msg:{{msg}}</h1>
+    <h1 ref="msg" @click="trigger">value:{{value}}</h1>
     <keep-alive exclude="login">
       <!-- <router-view></router-view> -->
       <HelloWorld v-if="flag" ref="hello" v-model="msg" :value1.sync="value">
@@ -41,7 +41,7 @@ export default {
   components: {
     HelloWorld
   },
-  mounted(){
+  // mounted(){
     // console.log(123)
     // this.msg1111="我是修改之后的数据";
     // 更新data数据是同步的,但是视图更新是异步(实现原理:then->nextTick(updateDOM))
@@ -63,13 +63,25 @@ export default {
 
     // console.log(this.$el)
     // console.log(this.$children[0].ccc=333)
-    console.log(this.$refs.msg,this.$refs.hello)
-  },
+    // console.log(this.$refs.msg,this.$refs.hello)
+  // },
   methods:{
     trigger(){
       this.flag=!this.flag
     }
-  }
+  },
+  beforeCreate(){
+    console.log("-------------beforeCreate-------------",this.value,this.$data,this.$refs.msg)
+  },
+  created(){
+    console.log("-------------created-------------",this.value,this.$data,this.$refs.msg)
+  },
+  beforeMount(){
+    console.log("-------------beforeMount-------------",this.$refs.msg)
+  },
+  mounted(){
+    console.log("-------------mounted-------------",this.$refs.msg)
+  },
 }
 </script>
 

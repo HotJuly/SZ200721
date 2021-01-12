@@ -1,6 +1,6 @@
 function Watcher(vm, expOrFn, cb) {
   // vm=>vm expOrFn=>"msg" cb=>function (value, oldValue) {
-    // updaterFn=>textUpdater
+    // updaterFn=>textUpdater(文本节点,123,"hello MVVM")
     //   updaterFn && updaterFn(node, value, oldValue);
     // }
 

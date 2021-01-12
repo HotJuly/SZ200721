@@ -1,0 +1,70 @@
+
+W3C标准
+响应式
+HTML5
+CSS3
+语义化
+
+flex布局，双飞翼布局，响应式布局等多种经典布局方案
+CSS预处理器: less/sass/stylus
+浏览器兼容
+canvas
+echarts
+
+熟悉JS面向对象， 如： 闭包，原型，继承
+熟悉DOM， BOM操作
+jQuery/jQuery插件
+前端模板: art-template
+Ajax/http协议/跨域问题，axios，fetch，flyio
+熟悉前后端通信原理，熟练使用原生ajax及ajax类库，如: axios,fetch,flyio
+版本控制: svn/git
+ES6新特性,如: promise, async, 箭头函数等
+项目构建工具: grunt, gulp, webpack
+模块化: commonjs,AMD(requirejs),CMD(seajs),ES6
+
+MVC
+MVVM
+react/react-router/ant-desgin
+redux
+vue2, vue-router, vue-resource,vue的基本原理(源码分析)
+前后端分离
+模拟数据
+测试接口
+axios/fetch
+viewport
+meta
+rem
+移动端适配
+一像素问题
+移动端事件
+事件点透
+无缝滑屏，即点即停，橡皮筋效果，防抖动
+移动端多指操作
+图片懒加载/预加载
+自定义滑屏
+自定义滚动条
+node
+express
+mongodb
+mongoose
+
+熟悉swiper，betterScroll等插件库的使用
+UI库MintUI,Antd，bootStrap
+photoshop
+debug调试
+npm包管理工具
+
+echarts
+
+微信小程序, Mpvue框架
+svn，git版本控制工具
+熟悉git版本控制工具并了解svn
+模块化: commonjs, ES6
+
+
+
+
+
+
+
+

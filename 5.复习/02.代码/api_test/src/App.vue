@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <h1 v-pre>msg:{{msg}}</h1>
-    <h1 ref="msg" @click="trigger">value:{{value}}</h1>
-    <keep-alive exclude="login">
+    <!-- <h1 v-pre>msg:{{msg}}</h1>
+    <h1 ref="msg" @click="trigger">value:{{value}}</h1> -->
+    <!-- <keep-alive exclude="login"> -->
       <!-- <router-view></router-view> -->
-      <HelloWorld v-if="flag" ref="hello" v-model="msg" :value1.sync="value">
+      <!-- <HelloWorld v-if="flag" ref="hello" v-model="msg" :value1.sync="value">
         <template v-slot:default>
           <h1>我是第一个插槽</h1>
         </template>
@@ -15,15 +15,17 @@
           <h1>我是footer插槽{{scope.footerData}}</h1>
         </template>
       </HelloWorld>
-    </keep-alive>
+    </keep-alive> -->
     <!-- <component :is=""></component> -->
     <!-- .sync实现原理 <HelloWorld ref="hello" :value="value" @update:value1="data=>value=data"/> -->
     <!-- v-model实现原理 <HelloWorld :value="msg" @input="value=>msg=value"/> -->
+      <List/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import List from './components/List.vue'
 
 export default {
   name: 'App',
@@ -39,7 +41,8 @@ export default {
     aaa:"haha"
   },
   components: {
-    HelloWorld
+    // HelloWorld,
+    List
   },
   // mounted(){
     // console.log(123)

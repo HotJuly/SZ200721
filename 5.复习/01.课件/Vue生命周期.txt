@@ -3,8 +3,12 @@
 初始化阶段
 beforeCreate
 created
+	1)发送请求
 beforeMount
 mounted
+	1)发送请求
+	2)操作真实DOM
+	3)绑定原生DOM事件(addEventListener)
 
 更新阶段
 beforeUpdate
@@ -12,6 +16,8 @@ updated
 
 卸载阶段
 beforeDestory
+	1)需要解绑原生DOM事件(没有用@绑定的事件都需要解绑)
+	2)关闭定时器
 destoryed
 
 keep-alive专用

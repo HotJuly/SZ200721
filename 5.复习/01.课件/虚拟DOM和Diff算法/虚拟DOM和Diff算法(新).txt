@@ -1,0 +1,59 @@
+组件首次渲染流程
+1.注入生命周期
+2.数据代理,数据劫持
+3.将template解析成render函数
+4.使用render函数生成虚拟DOM树
+5.使用虚拟DOM树生成真实DOM树
+6.将真实DOM树,挂载到页面上
+
+组件更新渲染流程
+1.经过数据代理和数据劫持
+2.会触发dep.notify(),通知watcher进行视图更新
+3.生成新的虚拟DOM树
+4.将新生成的虚拟DOM树与旧的虚拟DOM树进行比较,判断哪些真实DOM(this.$el)可以复用
+	能复用的就复用,不能复用的就重新生成真实DOM
+5.将最新的真实DOM,挂载到页面中
+
+
+问题一:什么是DOM对象
+HTML->标签	JS->DOM对象
+JS对象和标签是具有映射关系,我们称这个对象是DOM对象
+let p = document.querySelector('#app');
+p.style.background="red";
+
+问题二:为什么要有虚拟DOM对象
+真实DOM->体积较大->占用内存较大
+虚拟DOM->体积较小->占用内存较少
+	本质:普通的js对象
+	虚拟DOM对象和真实DOM对象是具有映射关系
+	方法:$createElement方法可以创建虚拟DOM(例如:main.js中render中的第一个实参就是createElement)
+	标签:<h1 id="a">123</h1>
+	结构:
+		{
+			tag:"h1",
+			text:"123",
+			attr:{
+				id:"a"
+			},
+			children:[
+				{
+					tag:"span",
+					text:"123",
+					attr:{
+						id:"a"
+					},
+					children:[]
+				}
+			]
+		}
+	通过虚拟DOM创建真实DOM
+	let h1=document.createElement(obj.tag);
+	h1.id=obj.attr.id;
+	h1.innerText=obj.text
+	
+	目的:
+		由于真实DOM对象身上属性过多,同时我们还基本都用不到,所以创建一个普通的js对象,用于记录关键属性(减少内存消耗)
+		操作真实DOM页面,不会发生渲染,操作虚拟DOM,页面不会发生渲染(减少渲染次数)
+
+问题三:为什么要有diff算法
+diff算法的作用,就是在于比较新旧虚拟DOM

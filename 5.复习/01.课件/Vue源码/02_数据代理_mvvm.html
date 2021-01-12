@@ -15,14 +15,13 @@
 -->
 
     <div id="app">
-      <p>{{msg}}</p>
+      <p class="ppp" v-on:click="handleClick">{{msg}}</p>
     </div>
     <script src="./js/observer.js"></script>
     <script src="./js/watcher.js"></script>
     <script src="./js/compile.js"></script>
     <script src="./js/mvvm.js"></script>
     <script>
-      debugger
 
       /*
         vm._data = options.data 代表原属性
@@ -45,6 +44,11 @@
         data: {
           msg: "hello MVVM",
         },
+        methods:{
+          handleClick(){
+            console.log('click')
+          }
+        }
       });
 
       console.log(vm.msg);

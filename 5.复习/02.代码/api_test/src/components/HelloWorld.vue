@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
-    <input type="text"  @input="handleInput">
+    <input type="text"  @input="handleInput" :value="value1">
     {{ccc}}
+    <slot name="default"></slot>
+    <slot name="header"></slot>
+    <slot name="footer" footerData="hello"></slot>
   </div>
 </template>
 
@@ -15,7 +18,8 @@ export default {
   },
   props: {
     msg: String,
-    abc:String
+    abc:String,
+    value1:String
   },
   model:{
     prop:"abc",
@@ -24,7 +28,8 @@ export default {
   methods:{
     handleInput(event){
       console.log(event.target.value)
-      this.$emit('input123',event.target.value)
+      // this.$emit('input123',event.target.value)
+      this.$emit('update:value1',event.target.value)
     }
   },
   inject:["aaa"],

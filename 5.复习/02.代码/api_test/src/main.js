@@ -35,6 +35,10 @@ Vue.config.errorHandler=function(err, vm, info){
 // // 创建 Profile 实例，并挂载到一个元素上。
 // new Profile().$mount('#app')
 
+// Vue.prototype.$bus=new Vue()
+// this.$bus.$on("msg",()=>{})
+// this.$bus.$emit("msg",value)
+
 new Vue({
   render: h => h(App),
 }).$mount('#app')

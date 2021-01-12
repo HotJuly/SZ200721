@@ -1,8 +1,24 @@
 <template>
   <div id="app">
-    <h1 ref="msg">{{msg}}</h1>
-    <HelloWorld ref="hello" v-model="msg" value="222"/>
-    <!-- <HelloWorld :value="msg" @input="value=>msg=value"/> -->
+    <h1 ref="msg" v-pre>msg:{{msg}}</h1>
+    <h1 ref="msg" v-once @click="trigger">value:{{value}}</h1>
+    <keep-alive exclude="login">
+      <!-- <router-view></router-view> -->
+      <HelloWorld v-if="flag" ref="hello" v-model="msg" :value1.sync="value">
+        <template v-slot:default>
+          <h1>我是第一个插槽</h1>
+        </template>
+        <template v-slot:header>
+          <h1>我是header插槽</h1>
+        </template>
+        <template v-slot:footer="scope">
+          <h1>我是footer插槽{{scope.footerData}}</h1>
+        </template>
+      </HelloWorld>
+    </keep-alive>
+    <!-- <component :is=""></component> -->
+    <!-- .sync实现原理 <HelloWorld ref="hello" :value="value" @update:value1="data=>value=data"/> -->
+    <!-- v-model实现原理 <HelloWorld :value="msg" @input="value=>msg=value"/> -->
   </div>
 </template>
 
@@ -14,7 +30,9 @@ export default {
   data(){
     return {
       msg1111:"我是修改之前的数据",
-      msg:"Welcome to Your Vue.js App"
+      msg:"Welcome to Your Vue.js App",
+      value:"222",
+      flag:true
     }
   },
   provide:{
@@ -46,6 +64,11 @@ export default {
     // console.log(this.$el)
     // console.log(this.$children[0].ccc=333)
     console.log(this.$refs.msg,this.$refs.hello)
+  },
+  methods:{
+    trigger(){
+      this.flag=!this.flag
+    }
   }
 }
 </script>

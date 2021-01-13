@@ -19,7 +19,7 @@ https://juejin.im/post/6844904079206924295
 
   - react jsx 语法 / vue template 模板语法
     - 组件化
-  - react 单向数据流 / vue 双向数据流
+  - react 单向数据流 / vue 单向数据流,双向数据绑定
   - vue 有指令，react 没有
   - 更新方式不一样 / diff 算法不一样
   - vue 很多语法（通信方式、computed），react 没有
@@ -116,10 +116,17 @@ https://juejin.im/post/6844904079206924295
               name: 'detail', // 会去路由配置找相应的name
               params: { id: message.id },
               query: {
-              name: 'jack',
-              age: 18
+                  name: 'jack',
+                  age: 18
               }
           }"
+          :to="{
+          	path:"/home",
+          	query:{},
+          	params:{}
+          }"
+          
+          <route-link to="/home/params?queryKey=queryValue">
           组件内部使用：this.$route
           将其变成props方式：
           props: function(route) {
@@ -130,14 +137,14 @@ https://juejin.im/post/6844904079206924295
               ...route.query
               };
           }
-
+  
       给多个路由组件传相同参
       props
           将来router-view显示哪个组件，就给哪个组件传参
           <router-view :xxx="xxx"></router-view>
           组件内部需要声明接受props
           使用：this.xxx
-
+  
   ```
 
 - 各种指令
@@ -224,7 +231,7 @@ https://juejin.im/post/6844904079206924295
             <child :money.sync="total"/>
             <!-- 等价于 -->
             <Child :money="total" @update:money="total=$event"/>
-
+    
             data () {
               return {
                 total: 1000

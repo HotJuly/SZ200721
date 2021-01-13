@@ -1,0 +1,51 @@
+1.内容
+	5个:
+	1)router-link组件
+	2)router-view组件
+	3)构造函数VueRouter
+	4)$router
+	5)$route
+
+2.功能
+	1)当路由路径发生变化的时候,显示对应的组件
+		如何监视路由路径是否发生变化
+			$route.path->存放当前路由地址
+			通过数据劫持,监视path属性是否发生变化
+		如何显示对应的组件
+			router-view组件显示对应的组件
+				如何知道对应的组件是哪一个
+					通过routes数组寻找对应的组件
+						mapRoutes
+
+	2)通过router-link实现路由跳转(声明式导航)
+		生成一个标签(默认a标签),禁止默认行为,绑定click事件,在内部调用编程式导航
+	3)通过jsAPI实现编程式导航
+		hash模式->window.location.hash="xxx"
+		history模式->window.history.pushState({},"","xxx")
+		更新route.path的地址,触发视图更新
+
+
+//1000个路由
+routes:[
+        {
+            path:"/home",
+            component:Home,
+            children:[
+                {
+                    path:"/home/xixi",
+                    component:Xixi
+                }
+            ]
+        },
+        {
+            path:"/about",
+            component:About
+        }
+    ]
+
+/home
+
+mapRoutes:{
+"/home":Home,
+"/about":About
+}

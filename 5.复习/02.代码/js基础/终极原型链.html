@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function Foo () {}
+        var foo = new Foo();
+        var obj = Object.call(foo)
+        console.log(obj)
+        // const f1 = new Foo()
+        // const f2 = new Foo()
+
+        // const o1 = new Object()
+        // const o2 = {}
+
+        console.log("Object",Object)
+
+        console.log("Function",Function)
+
+        console.log("Foo",Foo)
+
+        // Foo instanceof Object  
+        // Foo instanceof Function  
+        // Object instanceof Object  ?
+        // Function instanceof Function  
+        // Function instanceof Object  ?
+
+        // Object instanceof Foo
+        // f1 instanceof Function
+        // f1 instanceof Object
+    </script>
+</body>
+</html>

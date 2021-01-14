@@ -14,39 +14,54 @@
     2. 新函数内部会去调用原函数, 并指定原函数的this为第一个参数
     */
 
-    Function.prototype.bind = function (obj) {
-      console.log('bind()')
-      return () => {
-        this.call(obj)
-      }
-    }
+    // Function.prototype.bind = function (obj) {
+    //   console.log('bind()')
+    //   return () => {
+    //     this.call(obj)
+    //   }
+    // }
 
-    var m = 1
-    function fn() {
-      console.log(this.m)
-      return 3
-    }
-    const obj = {m: 2}
+    // var m = 1
+    // function fn() {
+    //   console.log(this.m)
+    //   return 3
+    // }
+    // const obj = {m: 2}
 
-    var fn2 = fn.bind(obj)
-    // fn()
-    fn2()
+    // var fn2 = fn.bind(obj)
+    // // fn()
+    // fn2()
     
 
-    const obj2 = {
-      test () {
-        const f = () => {
-          console.log('+++', this) // obj2
-        }
-        f()
+    // const obj2 = {
+    //   test () {
+    //     const f = () => {
+    //       console.log('+++', this) // obj2
+    //     }
+    //     f()
 
-        const f2 = function () {
-          console.log('---', this)
-        }
-        f2()  // window
+    //     const f2 = function () {
+    //       console.log('---', this)
+    //     }
+    //     f2()  // window
+    //   }
+    // }
+    // obj2.test()
+    var length=5;
+
+    var obj ={
+      length:3,
+      fn2:function(){
+        arguments[0]();
+        // arguments.0()
       }
     }
-    obj2.test()
+
+    function a(){
+      console.log(this.length)
+    }
+
+    obj.fn2(a);
   </script>
 </body>
 </html>

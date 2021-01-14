@@ -1,5 +1,7 @@
 const Koa = require('koa');
 const KoaRouter = require('koa-router');
+const Fly=require("flyio/src/node")
+const fly=new Fly;
 
 // const express = require('express')
 
@@ -103,6 +105,20 @@ router.get('/getGoodDetail',function(ctx,next){
     ctx.body=good
 })
 
+// 用于获取用户唯一标识
+router.get('/getOpenId',async function(ctx,next){
+    // console.log('getIndexData')
+    let {code} = ctx.query;
+    let appid = "wxe5931a68ea66cece";
+    let appSecret = "41922c0cba498307a79ad078037d8ab2";
+    let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`;
+    let result = await fly.get(url);
+    // console.log(result)
+    result = JSON.parse(result.data);
+    ctx.body={
+		data:result.openid
+	}
+})
 
 
 /*

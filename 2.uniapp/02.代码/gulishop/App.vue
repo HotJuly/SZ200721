@@ -1,7 +1,17 @@
 <script>
+	import ajax from './utils/ajax.js';
 	export default {
 		onLaunch: function() {
-			console.log('App Launch')
+			wx.login({
+				success:async ({code})=>{
+					// console.log('res',code)
+					let {data} = await ajax("/getOpenId",{code});
+					wx.setStorage({
+						key:"openId",
+						data
+					})
+				}
+			})
 		},
 		onShow: function() {
 			console.log('App Show')

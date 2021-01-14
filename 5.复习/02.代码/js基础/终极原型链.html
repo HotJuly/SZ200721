@@ -10,7 +10,7 @@
 
         function Foo () {}
         var foo = new Foo();
-        var obj = Object.call(foo)
+        var obj = Object.__proto__.call(foo)
         console.log(obj)
         // const f1 = new Foo()
         // const f2 = new Foo()

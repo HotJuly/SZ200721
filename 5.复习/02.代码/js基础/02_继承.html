@@ -18,58 +18,61 @@
       又有一个老师, 它有教授课程的属性, 能介绍它的所有信息
   */
     // 父类型
-    function Person(name, age) {
-      this.name = name
-      this.age = age
-      Person.prototype.count++
-    }
-    Person.prototype.sayHello = function () {
-      console.log(`我叫${this.name}, 年方${this.age}`)
-    }
+    // function Person(name, age) {
+    //   this.name = name
+    //   this.age = age
+    //   Person.prototype.count++
+    // }
+    // Person.prototype.sayHello = function () {
+    //   console.log(`我叫${this.name}, 年方${this.age}`)
+    // }
 
-    Person.prototype.count = 0
+    // Person.prototype.count = 0
     
 
-    // var p1 = new Person('A', 23)
-    // console.log(p1.count) // 1
-    // var p2 = new Person('B', 24)
-    // console.log(p2.count) // 2
-    // p1.sayHello()
-    // p2.sayHello()
+    // // var p1 = new Person('A', 23)
+    // // console.log(p1.count) // 1
+    // // var p2 = new Person('B', 24)
+    // // console.log(p2.count) // 2
+    // // p1.sayHello()
+    // // p2.sayHello()
 
-    /* 
-    组合继承: 原型链 + 借用父类型构造函数
-    1. 让子类型的原型对象为父类型的实例
-    2. 让原型对象的constructor子类型
-    3. 借用父类型构造函数来初始化相同属性
-    */
+    // /* 
+    // 组合继承: 原型链 + 借用父类型构造函数
+    // 1. 让子类型的原型对象为父类型的实例
+    // 2. 让原型对象的constructor子类型
+    // 3. 借用父类型构造函数来初始化相同属性
+    // */
 
-    // 子类型
-    function Student (name, age, price) {
-      // this.name = name
-      // this.age = age
+    // // 子类型
+    // function Student (name, age, price) {
+    //   // this.__proto__=Student.prototype
+    //   // this.name = name
+    //   // this.age = age
 
-      // 3. 借用父类型构造函数来初始化相同属性
-      Person.call(this, name, age) // 相当于this.Person(name, age)
+    //   // 3. 借用父类型构造函数来初始化相同属性
+    //   Person.call(this, name, age) // 相当于this.Person(name, age)
 
-      this.price = price
-    }
+    //   this.price = price
+    // }
 
    
-    // 重写从父类型继承来的方法
-    Student.prototype.sayHello = function () {
-      console.log(`我叫${this.name}, 年方${this.age}, 月薪${this.price}`)
-    }
+    // // 重写从父类型继承来的方法
+    // // Student.prototype.sayHello = function () {
+    // //   console.log(`我叫${this.name}, 年方${this.age}, 月薪${this.price}`)
+    // // }
 
-    var s2 = new Student('C2', 24, 15000)
+    // var s2 = new Student('C2', 24, 15000)
+    // s2.sayHello();
 
-    // 1. 让子类型的原型对象为父类型的实例
-    Student.prototype = new Person()  // 指定新的原型对象影响的是后面创建的实例对象
-    // Student.prototype.sayHello2 = function () { // 给原型对象添加方法影响是前后创建的所有实例
-    //   console.log('sayHello2()')
-    // }
-    // 2. 让原型对象的constructor子类型
-    Student.prototype.constructor = Student
+    // // 1. 让子类型的原型对象为父类型的实例
+    // Student.prototype = new Person()  // 指定新的原型对象影响的是后面创建的实例对象
+    // // Student.prototype.sayHello2 = function () { // 给原型对象添加方法影响是前后创建的所有实例
+    // //   console.log('sayHello2()')
+    // // }
+    // // 2. 让原型对象的constructor子类型
+    // Student.prototype.constructor = Student
+
 
     // // 重写从父类型继承来的方法
     // Student.prototype.sayHello = function () {
@@ -110,7 +113,10 @@
     class Student2 extends Person2 {
       constructor (name, age, price) {
         super(name, age)
+        // Person2.call(this,name,age)
         this.price = price
+        super.sayHello()
+        // super=>Person2.prototype
       }
       // 重写方法
       sayHello () { // 给原型对象添加方法

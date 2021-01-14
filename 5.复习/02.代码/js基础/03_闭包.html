@@ -7,30 +7,54 @@
 </head>
 <body>
   <script>
+    // var a=1;
+    // (function(w){
+    //   function a(){
+
+    //   }
+    //    window.b=a;
+
+    // })(window)
+
     function fn1() {
       var b = 3
       var a = 2;
-      function fn2 () {
+      function fn2() {
         a++;
+        var c=4;
         console.log(a);
+
+        function fn3() {
+          c++;
+          console.log(a,b,c);
+        }
+
+        function fn4() {
+          c+=2;
+          console.log(a,b,c);
+        }
+
+        return {fn3,fn4};
       }
-      return fn2;
+      return fn2();
     }
-    var f = fn1();
+    var {fn3,fn4} = fn1();
 
-    f();
-    f();
-    f = null
+    fn3();
+    fn4();
+    f=null;
+    // f();
+    // f = null
 
 
-    function showDelay(msg, time) {
-      setTimeout(() => {
-        alert(msg)
-      }, time);
-    }
+    // function showDelay(msg, time) {
+    //   setTimeout(() => {
+    //     alert(msg)
+    //   }, time);
+    // }
 
-    showDelay('abc', 1000)
-    clearTimeout()
+    // showDelay('abc', 1000)
+    // clearTimeout()
   </script>
 </body>
 </html>

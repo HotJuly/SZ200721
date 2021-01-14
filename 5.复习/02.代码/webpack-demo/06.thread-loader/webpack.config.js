@@ -1,0 +1,54 @@
+const {resolve} = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+/*
+    thread-loader
+    场景:webpack在打包的过程中,默认是单线程打包,但是我们电脑的CPU核心数一般都至少4核了
+    目的:同时进行多线程打包,多安排几个CPU核心去处理打包的这件事情,提高项目打包速度
+    细节:
+        如果项目体积非常小,不许要使用多线程打包
+            1)因为开启多线程功能,需要耗费600ms 
+            2)多线程之间,需要耗费额外的沟通成本,额外耗费时间
+*/
+module.exports={
+    entry:"./src/main.js",
+    output:{
+        filename:"[name].js",
+        path:resolve(__dirname,"./build")
+    },
+    module:{
+        rules:[
+            {
+                test:/.less$/,
+                use:[
+                    "style-loader",
+                    "css-loader",
+                    "less-loader"
+                ]
+            },
+            {
+                test:/.js$/,
+                use:[
+                    "thread-loader",
+                    {
+                        loader:"babel-loader",
+                        options:{
+                            presets:["@babel/preset-env"]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    plugins:[
+        new HTMLWebpackPlugin({
+            template:"./public/index.html"
+        })
+    ],
+    mode:"development",
+    resolve:{
+        alias:{
+            "@":resolve(__dirname,"./src")
+        },
+        extensions:[".ts",".js","jsx",".json",".less"]
+    }
+}

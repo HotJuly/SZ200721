@@ -1,0 +1,21 @@
+{
+  "name": "03.tree-shaking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.1",
+    "less": "^4.1.0",
+    "less-loader": "^7.2.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  }
+}

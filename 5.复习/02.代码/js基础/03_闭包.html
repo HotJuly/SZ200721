@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fn1() {
+      var b = 3
+      var a = 2;
+      function fn2 () {
+        a++;
+        console.log(a);
+      }
+      return fn2;
+    }
+    var f = fn1();
+
+    f();
+    f();
+    f = null
+
+
+    function showDelay(msg, time) {
+      setTimeout(() => {
+        alert(msg)
+      }, time);
+    }
+
+    showDelay('abc', 1000)
+    clearTimeout()
+  </script>
+</body>
+</html>

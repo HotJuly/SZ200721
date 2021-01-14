@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <script>
+   /* 
+  使用构造函数和ES6的类设计并测试以下需要
+    需求1: 
+      现在2个人, 都有姓名与年龄(值自己指定), 都能自我介绍自己的姓名和年龄, 能得到当前的总人数
+    需求2: 
+      现在又有了一个学生, 它有身价的属性, 能介绍它的所有信息
+      又有一个老师, 它有教授课程的属性, 能介绍它的所有信息
+  */
+    // 父类型
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+      Person.prototype.count++
+    }
+    Person.prototype.sayHello = function () {
+      console.log(`我叫${this.name}, 年方${this.age}`)
+    }
+
+    Person.prototype.count = 0
+    
+
+    // var p1 = new Person('A', 23)
+    // console.log(p1.count) // 1
+    // var p2 = new Person('B', 24)
+    // console.log(p2.count) // 2
+    // p1.sayHello()
+    // p2.sayHello()
+
+    /* 
+    组合继承: 原型链 + 借用父类型构造函数
+    1. 让子类型的原型对象为父类型的实例
+    2. 让原型对象的constructor子类型
+    3. 借用父类型构造函数来初始化相同属性
+    */
+
+    // 子类型
+    function Student (name, age, price) {
+      // this.name = name
+      // this.age = age
+
+      // 3. 借用父类型构造函数来初始化相同属性
+      Person.call(this, name, age) // 相当于this.Person(name, age)
+
+      this.price = price
+    }
+
+   
+    // 重写从父类型继承来的方法
+    Student.prototype.sayHello = function () {
+      console.log(`我叫${this.name}, 年方${this.age}, 月薪${this.price}`)
+    }
+
+    var s2 = new Student('C2', 24, 15000)
+
+    // 1. 让子类型的原型对象为父类型的实例
+    Student.prototype = new Person()  // 指定新的原型对象影响的是后面创建的实例对象
+    // Student.prototype.sayHello2 = function () { // 给原型对象添加方法影响是前后创建的所有实例
+    //   console.log('sayHello2()')
+    // }
+    // 2. 让原型对象的constructor子类型
+    Student.prototype.constructor = Student
+
+    // // 重写从父类型继承来的方法
+    // Student.prototype.sayHello = function () {
+    //   console.log(`我叫${this.name}, 年方${this.age}, 月薪${this.price}`)
+    // }
+
+
+    // var s1 = new Student('C', 24, 15000)
+    // s1.sayHello()
+    // console.log(s1, s1.constructor)
+    // s2.sayHello()
+
+
+
+    class Person2 {
+      constructor (name, age) {
+        this.name = name
+        this.age = age
+        Person2.prototype.count++
+      }
+
+      // count = 0 // 给实例添加属性
+      sayHello2 = function () {
+        console.log('sayHello2()')
+      }
+
+      sayHello () { // 给原型对象添加方法
+        console.log(`我叫${this.name}, 年方${this.age}`)
+      }
+    }
+    Person2.prototype.count = 0
+
+    // const pp = new Person2('tom', 23)
+    // console.log(pp)
+    // pp.sayHello()
+    // console.log(pp.count)
+    
+    class Student2 extends Person2 {
+      constructor (name, age, price) {
+        super(name, age)
+        this.price = price
+      }
+      // 重写方法
+      sayHello () { // 给原型对象添加方法
+        console.log(`我叫${this.name}, 年方${this.age}, 月薪${this.price}`)
+      }
+    }
+
+    const ss = new Student2('BB', 24, 16000)
+    ss.sayHello()
+    console.log(ss.constructor)
+    
+
+
+  </script>
+  
+</body>
+</html>

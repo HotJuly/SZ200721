@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    Fn()
+    // Fn2()
+    /* 
+    执行函数定义:
+      - 执行函数定义定义(有可能被提升执行) ==>  创建函数对象
+      - 给函数对象添加prototype属性, 属性值指定为空的Object实例对象   {}
+      - 给原型对象添加constructor属性, 值为函数
+    */
+    function Fn() {
+    }
+
+    var Fn2 = function () {}
+
+    Fn2()
+    /* 
+    创建实例对象内部:
+      const obj = {}
+      Fn.call(obj)
+      obj.__proto__ = Fn.prototype
+    */
+    const fn = new Fn()
+
+
+    console.log(Function.prototype, {})
+    
+    // js引擎自动执行了一段代码
+    Function.prototype.__proto__ = Object.prototype
+
+
+    console.log(Function.prototype, Function.prototype.__proto__===Object.prototype)
+
+  </script>
+</body>
+</html>

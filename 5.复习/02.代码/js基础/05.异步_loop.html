@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.20.0/axios.min.js"></script>
+  <script>
+    // new Promise((resolve, reject) => { // excutor
+    //   console.log('执行excutor')
+    // // 执行异步任务
+    // })
+
+
+    // function fn() {
+    //   for (let index = 0; index < 100; index++) {
+    //     //处理
+    //   }
+    // }
+    // fn()
+
+    // // 异步回调
+    // setTimeout(() => {
+    //   console.log('执行timout回调')
+    // }, 1000)
+
+    // // 需要2S  ===> 定时器回调只能在2S之后才执行
+    // for (let index = 0; index < 1000000000; index++) {
+    // }
+
+    /* 
+    .then()返回的promise的结果状态由什么决定?
+      简单说: 由.then()指定并执行的回调函数的执行结果决定
+      详细说: 
+        什么情况导致promise是失败的?
+          执行出错(抛异常了), 失败的reason就是抛出的错误
+          返回一个失败的promise, 失败的reason就是返回的promise的reason
+        什么情况导致promise是成功的?
+          返回一个成功的promise, 成功的value就是返回promise的value
+          返回一个非promise任务值, 也可以不返回(返回undefined), 成功的value就是返回值
+    */
+
+    // new Promise((resolve, reject) => {
+    //   // resolve(1)
+    //   reject(2)
+    // }).then(
+    //   value => {
+    //     console.log('onResolved1', value)
+    //   },   // onResolved
+    //   reason => {
+    //     console.log('onRejected1', reason)
+    //     // 抛出错误
+    //     // throw 3
+
+    //     // 返回一个失败的promise
+    //     // return Promise.reject(4)
+
+    //     // 返回一个成功的promise
+    //     // return Promise.resolve(5)
+
+    //     // 返回其它任意值
+    //     // return 6
+
+    //     Promise.reject(4)
+
+    //   } // onRejected
+    // ).then(
+    //   value => {
+    //     console.log('onResolved2', value)
+    //   },   
+    //   reason => {
+    //     console.log('onRejected2', reason)
+    //   }
+    // )
+
+
+
+    // Promise.all()
+
+    // function ajax(url) {
+    //   return axios.get(url)
+    // }
+    // const p1 = ajax(url1)
+    // const p2 = ajax(url2)
+    // const p3 = ajax(url3)
+    // Promise.all([p1, p2, p3])
+    //   .then(values => {
+    //     return ajax(url4)
+    //   })
+    //   .then(value => {
+    //     console.log(value) // 就是第4个请求成功的value
+    //   })
+    //   .catch(error => {
+
+    //   })
+
+    /* 
+    1. 哪里用await: 一般在结果为promise的表达式左侧
+        如果await 右侧表达式结果不是promise, 直接得到这个结果
+    2. 如果用async: 离await最近的函数定义的左侧
+
+    成功的value: await左侧以级下面的代码都是在成功之后执行(相当于在成功的回调中执行)
+    失败的reason: 使用try...catch中在失败后执行(相当于在失败的回调中执行)
+
+    调用async函数的得到是一个promise对象, promise的结果由aysnc函数体执行的结果决定(与.then类似)
+     */
+
+    function ajax(url) {
+      return axios.get(url)
+    }
+
+    async function getProduct() {
+      try {
+        const response = await ajax('/product2.json')
+        return response.data
+      } catch (error) {
+        console.log('请求出错', error.message)
+        // throw error
+        return Promise.reject(error)
+      }
+    }
+
+    // 等同于上面async&await的函数
+    function getProduct() {
+      return ajax('/product.json')
+        .then(response => {
+          return response.data
+        })
+        .catch(error => {
+          console.log('请求出错', error.message)
+          // throw error
+          return Promise.reject(error)
+        })
+    }
+
+
+
+    function test() {
+      getProduct().then(value => {
+        console.log(value)
+      }).catch(error => {
+        console.log('error', error.message)
+      })
+    }
+    test()
+
+  </script>
+</body>
+</html>
